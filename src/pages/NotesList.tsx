@@ -205,7 +205,7 @@ const NotesList: React.FC<NotesListProp> = ({
             </Col>
         </Row>
       </Form>
-      <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
+      <Row xs={1} sm={3} lg={4} xl={6} className="g-3">
         {filteredNotes.map(note => (
             <Col key={note.id}>
                 <NoteCard title={note.title} id={note.id} tags={note.tags}/>

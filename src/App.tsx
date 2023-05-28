@@ -2,15 +2,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   createBrowserRouter,
   Navigate,
-  Outlet,
   RouterProvider,
 } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-import NotesList from './pages/NotesList';
-import NewNote from "./pages/NewNote";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { NoteData, RawNote, Tag } from "./types";
 import { useMemo } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import NotesList from './pages/NotesList';
+import NewNote from "./pages/NewNote";
+import NoteLayout from "./Layouts/NoteLayout";
+import Note from "./pages/Note";
+import EditNote from "./pages/EditNote";
 
 function App() {
 
@@ -26,6 +28,24 @@ function App() {
 
   const onCreateNote = ({tags, ...data}: NoteData) => {
     setNotes(prevNotes => [ ...prevNotes, {...data, id: uuidv4(), tagIds: tags.map(tag => tag.id)}])
+  }
+
+  const onUpdateNote = (id: string, {tags, ...data}: NoteData) => {
+    setNotes(prevNotes => {
+      return prevNotes.map(note => {
+        if(note.id === id){
+          return {...note, ...data, tagIds: tags.map(tag => tag.id)}
+        } else {
+          return note
+        }
+      })
+    })
+  }
+
+  const onDeleteNote = (id: string) => {
+    setNotes(prevNotes => {
+      return prevNotes.filter(note => note.id !== id)
+    })
   }
 
   const addTag = (tag: Tag) => {
@@ -59,15 +79,15 @@ function App() {
     },
     {
       path: '/:id',
-      element: <Outlet />,
+      element: <NoteLayout notes={notesWithTags} />,
       children: [
         {
           index: true,
-          element: <h2>Note</h2>
+          element: <Note onDelete={onDeleteNote} />
         },
         {
           path: 'edit',
-          element: <h2>Edit</h2>
+          element: <EditNote onAddTag={addTag} availableTags={tags} onSubmit={onUpdateNote} />
         }
       ]
     },

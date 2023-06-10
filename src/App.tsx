@@ -95,7 +95,10 @@ function App() {
       path: "*",
       element: <Navigate to='/' replace />
     }
-  ])
+  ], {
+    basename: `${import.meta.env.BASE_URL}`
+  })
+
   return (
     <RouterProvider router={router} />
   )

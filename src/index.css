@@ -1,3 +1,5 @@
-#root{
+#root {
+    margin: auto;
     padding: 20px;
+    max-width: 60%;
 }

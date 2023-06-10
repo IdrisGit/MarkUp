@@ -71,7 +71,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <NotesList notes={notesWithTags} availableTags={tags} updateTag={onUpdateTag} deleteTag={onDeleteTag}  addTag={addTag} />
+      element: <NotesList notes={notesWithTags} availableTags={tags} updateTag={onUpdateTag} deleteTag={onDeleteTag} addTag={addTag} />
     },
     {
       path: '/new',

@@ -1,5 +1,10 @@
 #root {
     margin: auto;
     padding: 20px;
-    max-width: 60%;
+}
+
+@media only screen and (min-width: 992px) {
+    #root {
+        max-width: 60%;
+    }
 }

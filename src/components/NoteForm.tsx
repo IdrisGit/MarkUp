@@ -41,7 +41,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
         navigate("/")
     }
 
-    return(
+    return (
         <Form onSubmit={handleSubmit}>
             <Stack gap={4}>
                 <Row>
@@ -61,23 +61,23 @@ const NoteForm: React.FC<NoteFormProps> = ({
                             <Form.Label>Tags</Form.Label>
                             <CreatableReactSelect
                                 onCreateOption={label => {
-                                    const newTag = {id: uuidv4(), label: label}
+                                    const newTag = { id: uuidv4(), label: label }
                                     onAddTag(newTag)
                                     setSelectedTags(prev => [...prev, newTag])
                                 }}
                                 value={
                                     seletectedTags.map((tag) => {
-                                        return {label: tag.label, value: tag.id}
+                                        return { label: tag.label, value: tag.id }
                                     })
                                 }
                                 options={
                                     availableTags.map((tag) => {
-                                        return {label: tag.label, value: tag.id}
+                                        return { label: tag.label, value: tag.id }
                                     })
                                 }
                                 onChange={tags => {
                                     setSelectedTags(tags.map(tag => {
-                                        return {label: tag.label, id: tag.value}
+                                        return { label: tag.label, id: tag.value }
                                     }))
                                 }}
                                 isMulti
@@ -92,7 +92,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
                         as='textarea'
                         defaultValue={markdown}
                         required
-                        rows={15}
+                        rows={25}
                     />
                 </Form.Group>
                 <Stack gap={2} direction='horizontal' className='justify-content-end'>

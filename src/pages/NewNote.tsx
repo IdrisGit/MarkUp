@@ -8,14 +8,14 @@ interface NewNoteProps {
 }
 
 const NewNote: React.FC<NewNoteProps> = (props) => {
-    return(
+    return (
         <>
-        <h1 className="mb-4">New Note</h1>
-        <NoteForm 
-            onSubmit={props.onSubmit} 
-            onAddTag={props.onAddTag} 
-            availableTags={props.availableTags} 
-        />
+            <h1 className="mb-4">New Note</h1>
+            <NoteForm
+                onSubmit={props.onSubmit}
+                onAddTag={props.onAddTag}
+                availableTags={props.availableTags}
+            />
         </>
     )
 };

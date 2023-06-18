@@ -57,7 +57,10 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
             className='justify-content-center flex-wrap'
           >
             {tags.map((tag) => (
-              <Badge key={tag.id} className='text-truncate'>
+              <Badge
+                key={tag.id}
+                className='text-truncate'
+              >
                 {tag.label}
               </Badge>
             ))}
@@ -90,7 +93,10 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal
+      show={show}
+      onHide={handleClose}
+    >
       <Modal.Header closeButton>Edit Tags</Modal.Header>
       <Modal.Body>
         <Form>
@@ -117,7 +123,11 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
           </Stack>
         </Form>
         <Form>
-          <Stack direction='horizontal' className='mt-5' gap={2}>
+          <Stack
+            direction='horizontal'
+            className='mt-5'
+            gap={2}
+          >
             <Col>
               <Form.Control
                 ref={newTagRef}
@@ -173,7 +183,10 @@ const NotesList: React.FC<NotesListProp> = ({
           <h1>Notes</h1>
         </Col>
         <Col xs='auto'>
-          <Stack gap={2} direction='horizontal'>
+          <Stack
+            gap={2}
+            direction='horizontal'
+          >
             <Link to={'/new'}>
               <Button variant='primary'>Create New Note</Button>
             </Link>
@@ -221,7 +234,13 @@ const NotesList: React.FC<NotesListProp> = ({
           </Col>
         </Row>
       </Form>
-      <Row xs={1} sm={3} lg={3} xl={4} className='g-3'>
+      <Row
+        xs={1}
+        sm={3}
+        lg={3}
+        xl={4}
+        className='g-3'
+      >
         {filteredNotes.map((note) => (
           <Col key={note.id}>
             <NoteCard

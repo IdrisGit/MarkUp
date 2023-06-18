@@ -99,7 +99,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
         >
           <Button type='submit'>Save</Button>
           <Link to={'..'}>
-            <Button type='button' variant='outline-secondary'>
+            <Button
+              type='button'
+              variant='outline-secondary'
+            >
               Cancel
             </Button>
           </Link>

@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useNote } from '../hooks/useNote';
 import { Badge, Button, Col, Row, Stack } from 'react-bootstrap';
+import DeleteModal from '../components/DeleteModal';
 
 interface NoteProps {
   onDelete: (id: string) => void;
 }
 
 const Note: React.FC<NoteProps> = ({ onDelete }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const note = useNote();
   const navigate = useNavigate();
 
@@ -23,23 +27,26 @@ const Note: React.FC<NoteProps> = ({ onDelete }) => {
               className='flex-wrap'
             >
               {note.tags.map((tag) => (
-                <Badge key={tag.id} className='text-truncate'>
+                <Badge
+                  key={tag.id}
+                  className='text-truncate'
+                >
                   {tag.label}
                 </Badge>
               ))}
             </Stack>
           </Col>
           <Col xs='auto'>
-            <Stack gap={2} direction='horizontal'>
+            <Stack
+              gap={2}
+              direction='horizontal'
+            >
               <Link to={`/${note.id}/edit`}>
                 <Button variant='primary'>Edit</Button>
               </Link>
               <Button
                 variant='outline-danger'
-                onClick={() => {
-                  onDelete(note.id);
-                  navigate('/', { replace: true });
-                }}
+                onClick={() => setShowDeleteModal(true)}
               >
                 Delete
               </Button>
@@ -56,6 +63,14 @@ const Note: React.FC<NoteProps> = ({ onDelete }) => {
           <ReactMarkdown>{note.markdown}</ReactMarkdown>
         </Row>
       </Stack>
+      <DeleteModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handleDelete={() => {
+          onDelete(note.id);
+          navigate('/', { replace: true });
+        }}
+      />
     </>
   );
 };

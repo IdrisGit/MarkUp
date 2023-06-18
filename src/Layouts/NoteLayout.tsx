@@ -10,7 +10,13 @@ const NoteLayout: React.FC<NoteLayoutProps> = ({ notes }) => {
 
   const note = notes.find((note) => note.id === id);
 
-  if (note === null) return <Navigate to='/' replace />;
+  if (note === null)
+    return (
+      <Navigate
+        to='/'
+        replace
+      />
+    );
 
   return <Outlet context={note} />;
 };

@@ -92,7 +92,7 @@ React-NoteTaker is licensed under the [MIT License](LICENSE.md).
 
 If you have any questions, suggestions, or feedback, please feel free to contact me.
 
-Email: [Contact Me](mailto:idris.gadi01@gmail.com)  
-GitHub: [GitHub Link](https://github.com/IdrisGit)
+Email: idris.gadi01@gmail.com  
+GitHub: https://github.com/IdrisGit
 
 Thank you for using React-NoteTaker!

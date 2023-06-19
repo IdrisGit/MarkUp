@@ -86,7 +86,7 @@ Feel free to suggest more features or enhancements that you would like to see in
 
 ## License
 
-React-NoteTaker is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+React-NoteTaker is licensed under the [MIT License](LICENSE.md).
 
 ## Contact
 

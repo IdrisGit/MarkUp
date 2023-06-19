@@ -52,7 +52,7 @@ Here's a brief demonstration of how to use React-NoteTaker:
 
 1. **Homepage**: Upon launching the application, user is presented with the homepage where all their notes are displayed.
 
-   <img src="./readme_assests/home-page.png" alt="Homepage" width="90%" aspectRatio="1.98 / 1" >
+   <img src="./readme_assests/home-page.png" alt="Homepage" width="100%" aspectRatio="1.98 / 1" >
 
 2. **Create New Note**: Users can click on the "Create New Note" button to create a new note. They can enter the title, content, and optionally assign tags to categorize the note.
 

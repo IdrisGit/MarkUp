@@ -40,7 +40,7 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 ## Demo
 
-Check out the live demo of React-NoteTaker:  
+Check out the live demo of React-NoteTaker:
 
 - :globe_with_meridians: **Live Page:** https://idrisgit.github.io/React-NoteTaker/
 
@@ -52,25 +52,25 @@ Here's a brief demonstration of how to use React-NoteTaker:
 
 1. **Homepage**: Upon launching the application, user is presented with the homepage where all their notes are displayed.
 
-   <img src="./readme_assests/home-page.png" alt="Homepage" width="100%" aspectRatio="1.98 / 1" >
+   ![Homepage](./readme_assests/home-page.png)
 
 2. **Create New Note**: Users can click on the "Create New Note" button to create a new note. They can enter the title, content, and optionally assign tags to categorize the note.
 
-   <img src="./readme_assests/new-note-page.png" alt="Create New Note" width="75%" aspectRatio="1.98 / 1" >
+   ![Create New Note](./readme_assests/new-note-page.png)
 
 3. **Edit Note**: To edit an existing note, user can click on the "Edit" button associated with the specific note. This opens a form where they can update the title, content, or tags of the note.
 
-   <img src="./readme_assests/edit-note.png" alt="Edit Note" width="75%" aspectRatio="1.98 / 1" >
+   ![Edit Note](./readme_assests/edit-note.png)
 
 4. **Filter Notes**: React-NoteTaker allows users to filter notes based on title and tags. They can enter a search query in the search bar to filter notes by title. Additionally, they can select tags from the tag filter dropdown to display only the notes associated with those tags.
 
-   |                                               Filter by Title                                                |                                                 Filter by Tags                                                 |
-   | :----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
-   | <img src="./readme_assests/search-tab.png" alt="Filter Notes by Title" width="100%" aspectRatio="1.98 / 1" > | <img src="./readme_assests/filterby-tags.png" alt="Filter Notes by Tags" width="100%" aspectRatio="1.98 / 1" > |
+   |                   Filter by Title                   |                    Filter by Tags                     |
+   | :-------------------------------------------------: | :---------------------------------------------------: |
+   | ![Filter by Title](./readme_assests/search-tab.png) | ![Filter by Tags](./readme_assests/filterby-tags.png) |
 
 5. **Edit Tags**: Users can manage the available tags in the application by accessing the "Edit Tags" functionality. Here, they can add new tags, remove existing ones, or update the labels of the tags.
 
-   <img src="./readme_assests/edit-tags.png" alt="Edit Tags" width="75%" aspectRatio="1.98 / 1" >
+   ![Edit Tags](./readme_assests/edit-tags.png)
 
 ## TODO (Future Plans)
 

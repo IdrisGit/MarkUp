@@ -27,7 +27,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
-  const [markdownPreview, setMarkdownPreview] = useState('');
+  const [markdownPreview, setMarkdownPreview] = useState(markdown);
 
   const navigate = useNavigate();
 
@@ -109,7 +109,12 @@ const NoteForm: React.FC<NoteFormProps> = ({
               <Form.Label>Preview</Form.Label>
               <div
                 className='border rounded'
-                style={{ height: '95%', padding: '10px 10px 0px' }}
+                style={{
+                  overflow: 'auto',
+                  height: '38.3em',
+                  maxHeight: '38.3em',
+                  padding: '5px 10px',
+                }}
               >
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {markdownPreview}

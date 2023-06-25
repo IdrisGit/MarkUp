@@ -10,8 +10,6 @@ const NoteLayout: React.FC<NoteLayoutProps> = ({ notes }) => {
 
   const note = notes.find((note) => note.id === id);
 
-  console.log('note', note);
-
   if (note === undefined)
     return (
       <Navigate

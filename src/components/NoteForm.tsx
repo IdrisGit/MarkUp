@@ -87,7 +87,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
         </Row>
         <Form.Group controlId='markdown'>
           <Row>
-            <Col xs={6}>
+            <Col
+              xs={12}
+              md={6}
+            >
               <Form.Label>Body</Form.Label>
               <Form.Control
                 required
@@ -99,7 +102,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
                 style={{ resize: 'none' }}
               />
             </Col>
-            <Col xs={6}>
+            <Col
+              xs={6}
+              className='d-none d-md-block'
+            >
               <Form.Label>Preview</Form.Label>
               <div
                 className='border rounded'

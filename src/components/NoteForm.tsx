@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button, Col, Form, Row, Stack } from 'react-bootstrap';
 import { NoteData, Tag } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface NoteFormProps {
   onSubmit: (data: NoteData) => void;
@@ -25,6 +27,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
+  const [markdownPreview, setMarkdownPreview] = useState('');
 
   const navigate = useNavigate();
 
@@ -83,14 +86,31 @@ const NoteForm: React.FC<NoteFormProps> = ({
           </Col>
         </Row>
         <Form.Group controlId='markdown'>
-          <Form.Label>Body</Form.Label>
-          <Form.Control
-            ref={markdownRef}
-            as='textarea'
-            defaultValue={markdown}
-            required
-            rows={25}
-          />
+          <Row>
+            <Col xs={6}>
+              <Form.Label>Body</Form.Label>
+              <Form.Control
+                required
+                as='textarea'
+                ref={markdownRef}
+                defaultValue={markdown}
+                onChange={(e) => setMarkdownPreview(e.target.value)}
+                rows={25}
+                style={{ resize: 'none' }}
+              />
+            </Col>
+            <Col xs={6}>
+              <Form.Label>Preview</Form.Label>
+              <div
+                className='border rounded'
+                style={{ height: '95%', padding: '10px 10px 0px' }}
+              >
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {markdownPreview}
+                </ReactMarkdown>
+              </div>
+            </Col>
+          </Row>
         </Form.Group>
         <Stack
           gap={2}

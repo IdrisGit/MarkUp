@@ -4,6 +4,7 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useNote } from '../hooks/useNote';
 import { Badge, Button, Col, Row, Stack } from 'react-bootstrap';
 import DeleteModal from '../components/DeleteModal';
+import remarkGfm from 'remark-gfm';
 
 interface NoteProps {
   onDelete: (id: string) => void;
@@ -60,7 +61,9 @@ const Note: React.FC<NoteProps> = ({ onDelete }) => {
           className='border border-dark rounded p-2 mh-100 h-100'
           style={{ minHeight: '85vh' }}
         >
-          <ReactMarkdown>{note.markdown}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {note.markdown}
+          </ReactMarkdown>
         </Row>
       </Stack>
       <DeleteModal

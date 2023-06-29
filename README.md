@@ -30,7 +30,7 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 ## Technologies Used
 
-- :label: TypeScript v4.3
+- :label: TypeScript v5
 - :atom_symbol: React v18
 - :link: React Router v6
 - :art: Bootstrap v5

@@ -45,7 +45,7 @@ Check out the live demo of React-NoteTaker:
 
 - :globe_with_meridians: **Live Page:** https://idrisgit.github.io/React-NoteTaker
 
-  > :memo: **Note:** The current version of React-NoteTaker uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
+  > :warning: **Note:** The current version of React-NoteTaker uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 
 ## Usage
 

@@ -34,7 +34,7 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 - :atom_symbol: React v18
 - :link: React Router v6
 - :art: Bootstrap v5
-- :gear: Zustand v4
+- :bear: Zustand v4
 - :arrow_down: React Select v5.7
 - :pencil: React Markdown v8.0
 - :key: uuid v9.0

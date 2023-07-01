@@ -58,7 +58,7 @@ const Note: React.FC<NoteProps> = ({ onDelete }) => {
           </Col>
         </Row>
         <Row
-          className='border border-dark rounded p-2 mh-100 h-100'
+          className='border border-dark rounded py-2 px-4 mh-100 h-100'
           style={{ minHeight: '85vh' }}
         >
           <ReactMarkdown remarkPlugins={[remarkGfm]}>

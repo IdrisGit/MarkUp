@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useStore } from './store/store';
+import MainLayout from './Layouts/MainLayout';
 import NotesList from './pages/NotesList';
 import NewNote from './pages/NewNote';
 import NoteLayout from './Layouts/NoteLayout';
@@ -37,45 +38,52 @@ function App() {
     [
       {
         path: '/',
-        element: (
-          <NotesList
-            notes={notesWithTags}
-            availableTags={tags}
-            updateTag={onUpdateTag}
-            deleteTag={onDeleteTag}
-            addTag={addTag}
-          />
-        ),
+        element: <MainLayout />,
         errorElement: <ErrorPage />,
-      },
-      {
-        path: '/new',
-        element: (
-          <NewNote
-            onSubmit={onCreateNote}
-            onAddTag={addTag}
-            availableTags={tags}
-          />
-        ),
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: '/:id',
-        element: <NoteLayout notes={notesWithTags} />,
         children: [
           {
             index: true,
-            element: <Note onDelete={onDeleteNote} />,
-          },
-          {
-            path: 'edit',
             element: (
-              <EditNote
-                onAddTag={addTag}
+              <NotesList
+                notes={notesWithTags}
                 availableTags={tags}
-                onSubmit={onUpdateNote}
+                updateTag={onUpdateTag}
+                deleteTag={onDeleteTag}
+                addTag={addTag}
               />
             ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: 'new',
+            element: (
+              <NewNote
+                onSubmit={onCreateNote}
+                onAddTag={addTag}
+                availableTags={tags}
+              />
+            ),
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: '/:id',
+            element: <NoteLayout notes={notesWithTags} />,
+            children: [
+              {
+                index: true,
+                element: <Note onDelete={onDeleteNote} />,
+              },
+              {
+                path: 'edit',
+                element: (
+                  <EditNote
+                    onAddTag={addTag}
+                    availableTags={tags}
+                    onSubmit={onUpdateNote}
+                  />
+                ),
+              },
+            ],
           },
         ],
       },

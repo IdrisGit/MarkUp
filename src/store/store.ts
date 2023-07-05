@@ -5,8 +5,8 @@ import { RawNote, Tag, NoteData } from '../types';
 interface State {
   notes: RawNote[];
   tags: Tag[];
-  onCreateNote: (data: NoteData) => void;
-  onUpdateNote: (id: string, { tags, ...data }: NoteData) => void;
+  onCreateNote: (data: NoteData) => string;
+  onUpdateNote: (id: string, { tags, ...data }: NoteData) => string;
   onDeleteNote: (id: string) => void;
   addTag: (tag: Tag) => void;
   onUpdateTag: (id: string, label: string) => void;
@@ -16,16 +16,19 @@ interface State {
 export const useStore = create<State>()((set) => ({
   notes: JSON.parse(localStorage.getItem('NOTES') || '[]'),
   tags: JSON.parse(localStorage.getItem('TAGS') || '[]'),
-  onCreateNote: ({ tags, ...data }) =>
+  onCreateNote: ({ tags, ...data }) => {
+    const id = uuidv4();
     set((state) => {
       const newNotes = [
         ...state.notes,
-        { ...data, id: uuidv4(), tagIds: tags.map((tag) => tag.id) },
+        { ...data, id: id, tagIds: tags.map((tag) => tag.id) },
       ];
       localStorage.setItem('NOTES', JSON.stringify(newNotes));
       return { notes: newNotes };
-    }),
-  onUpdateNote: (id, { tags, ...data }) =>
+    });
+    return id;
+  },
+  onUpdateNote: (id, { tags, ...data }) => {
     set((state) => {
       const updatedNotes = state.notes.map((note) => {
         if (note.id === id) {
@@ -39,7 +42,9 @@ export const useStore = create<State>()((set) => ({
       });
       localStorage.setItem('NOTES', JSON.stringify(updatedNotes));
       return { notes: updatedNotes };
-    }),
+    });
+    return id;
+  },
   onDeleteNote: (id) =>
     set((state) => {
       const updatedNotes = state.notes.filter(

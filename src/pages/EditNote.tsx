@@ -3,7 +3,7 @@ import { useNote } from '../hooks/useNote';
 import { NoteData, Tag } from '../types';
 
 interface EditNoteProps {
-  onSubmit: (id: string, data: NoteData) => void;
+  onSubmit: (id: string, data: NoteData) => string;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 }

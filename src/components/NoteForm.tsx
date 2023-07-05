@@ -8,7 +8,7 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface NoteFormProps {
-  onSubmit: (data: NoteData) => void;
+  onSubmit: (data: NoteData) => string;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
   title?: string;
@@ -34,13 +34,13 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    onSubmit({
+    const noteId = onSubmit({
       title: titleRef.current!.value,
       markdown: markdownRef.current!.value,
       tags: seletectedTags,
     });
 
-    navigate('/');
+    navigate(`/${noteId}`);
   };
 
   return (

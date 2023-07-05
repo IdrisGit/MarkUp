@@ -2,7 +2,7 @@ import NoteForm from '../components/NoteForm';
 import { NoteData, Tag } from '../types';
 
 interface NewNoteProps {
-  onSubmit: (data: NoteData) => void;
+  onSubmit: (data: NoteData) => string;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 }

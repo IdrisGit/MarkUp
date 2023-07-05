@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fac1d3de-7c58-44be-8fc0-c0e18d3bbd70",
+    "label": "Brainstorm"
+  },
+  {
+    "id": "f6c34d0c-6e92-47ad-bde0-2d1a07eb2151",
+    "label": "Marketing"
+  },
+  {
+    "id": "eddeb2e6-a5b2-44a1-9fa9-ddb1860e4021",
+    "label": "Strategy"
+  },
+  {
+    "id": "b9f58877-94fa-4743-8206-9d77549e29d7",
+    "label": "Action Items"
+  },
+  {
+    "id": "9ad50b52-0726-4ad8-9f8d-bcd914c7370e",
+    "label": "Website"
+  },
+  {
+    "id": "a8725d26-d77d-48b5-aa7a-a356952b04ac",
+    "label": "Update"
+  },
+  {
+    "id": "49ad6a6d-8c6f-4988-9e51-5b4573f3851c",
+    "label": "Research"
+  },
+  {
+    "id": "cd4fc75f-d420-4e33-a835-79d34f6db886",
+    "label": "Health"
+  },
+  {
+    "id": "29f714c6-d04f-4c2e-a751-04f72accf0d1",
+    "label": "AI"
+  }
+]

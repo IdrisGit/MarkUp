@@ -1,18 +1,14 @@
 import NoteForm from '../components/NoteForm';
+import { useStore } from '../store/store';
 import { useNote } from '../hooks/useNote';
-import { NoteData, Tag } from '../types';
+import { Tag } from '../types';
 
 interface EditNoteProps {
-  onSubmit: (id: string, data: NoteData) => string;
-  onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 }
 
-const EditNote: React.FC<EditNoteProps> = ({
-  onSubmit,
-  onAddTag,
-  availableTags,
-}) => {
+const EditNote: React.FC<EditNoteProps> = ({ availableTags }) => {
+  const { onUpdateNote, addTag } = useStore();
   const note = useNote();
 
   return (
@@ -23,8 +19,8 @@ const EditNote: React.FC<EditNoteProps> = ({
         markdown={note.markdown}
         tags={note.tags}
         availableTags={availableTags}
-        onAddTag={onAddTag}
-        onSubmit={(data) => onSubmit(note.id, data)}
+        onAddTag={addTag}
+        onSubmit={(data) => onUpdateNote(note.id, data)}
       />
     </>
   );

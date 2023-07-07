@@ -3,16 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useNote } from '../hooks/useNote';
 import { Badge, Button, Col, Row, Stack } from 'react-bootstrap';
+import { useStore } from '../store/store';
 import DeleteModal from '../components/DeleteModal';
 import remarkGfm from 'remark-gfm';
 
-interface NoteProps {
-  onDelete: (id: string) => void;
-}
-
-const Note: React.FC<NoteProps> = ({ onDelete }) => {
+const Note: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const { onDeleteNote } = useStore();
   const note = useNote();
   const navigate = useNavigate();
 
@@ -70,7 +68,7 @@ const Note: React.FC<NoteProps> = ({ onDelete }) => {
         show={showDeleteModal}
         handleClose={() => setShowDeleteModal(false)}
         handleDelete={() => {
-          onDelete(note.id);
+          onDeleteNote(note.id);
           navigate('/', { replace: true });
         }}
       />

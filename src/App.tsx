@@ -14,16 +14,7 @@ import EditNote from './pages/EditNote';
 import ErrorPage from './pages/ErrorPage';
 
 function App() {
-  const {
-    notes,
-    tags,
-    onCreateNote,
-    onUpdateNote,
-    onDeleteNote,
-    addTag,
-    onUpdateTag,
-    onDeleteTag,
-  } = useStore();
+  const { notes, tags } = useStore();
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
@@ -47,22 +38,13 @@ function App() {
               <NotesList
                 notes={notesWithTags}
                 availableTags={tags}
-                updateTag={onUpdateTag}
-                deleteTag={onDeleteTag}
-                addTag={addTag}
               />
             ),
             errorElement: <ErrorPage />,
           },
           {
             path: 'new',
-            element: (
-              <NewNote
-                onSubmit={onCreateNote}
-                onAddTag={addTag}
-                availableTags={tags}
-              />
-            ),
+            element: <NewNote availableTags={tags} />,
             errorElement: <ErrorPage />,
           },
           {
@@ -71,17 +53,11 @@ function App() {
             children: [
               {
                 index: true,
-                element: <Note onDelete={onDeleteNote} />,
+                element: <Note />,
               },
               {
                 path: 'edit',
-                element: (
-                  <EditNote
-                    onAddTag={addTag}
-                    availableTags={tags}
-                    onSubmit={onUpdateNote}
-                  />
-                ),
+                element: <EditNote availableTags={tags} />,
               },
             ],
           },

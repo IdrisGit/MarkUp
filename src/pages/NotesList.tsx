@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { Tag } from '../types';
+import { useStore } from '../store/store';
 
 type SimplifiedNote = {
   tags: Tag[];
@@ -24,9 +25,6 @@ type SimplifiedNote = {
 interface NotesListProp {
   notes: SimplifiedNote[];
   availableTags: Tag[];
-  deleteTag: (id: string) => void;
-  updateTag: (id: string, label: string) => void;
-  addTag: (tag: Tag) => void;
 }
 
 interface EditTagsModalProps {
@@ -154,14 +152,13 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
 const NotesList: React.FC<NotesListProp> = ({
   notes,
   availableTags,
-  addTag,
-  updateTag,
-  deleteTag,
 }) => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [editTagsModalOpen, setEditTagsModalOpen] =
     useState<boolean>(false);
+
+  const { addTag, onUpdateTag, onDeleteTag } = useStore();
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -256,8 +253,8 @@ const NotesList: React.FC<NotesListProp> = ({
         handleClose={() => setEditTagsModalOpen(false)}
         availableTags={availableTags}
         onAdd={addTag}
-        onUpdate={updateTag}
-        onDelete={deleteTag}
+        onUpdate={onUpdateTag}
+        onDelete={onDeleteTag}
       />
     </>
   );

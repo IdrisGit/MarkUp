@@ -22,6 +22,8 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 - **Filter with Precision:** Quickly find the notes you need using the advanced filtering feature. Filter notes based on titles, tags, or a combination of both, ensuring you find the right information in no time.
 
+- **Real-time Markdown Preview:** See a live preview of your notes as you write them in Markdown. Instantly visualize how your formatted text will look, making it easier to create well-structured content.
+
 - **Automatic Tag Updates:** Enjoy seamless tag management. When you update a tag, React-NoteTaker automatically reflects the changes across all notes tagged with that specific tag. Say goodbye to manual tag updates and save valuable time.
 
 - **Intuitive User Interface:** React-NoteTaker boasts an intuitive and user-friendly interface. With its clean design and straightforward navigation, you can focus on your notes without any distractions.
@@ -43,7 +45,7 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 Check out the live demo of React-NoteTaker:
 
-- :globe_with_meridians: **Live Page:** https://idrisgit.github.io/React-NoteTaker
+- :globe_with_meridians: **Live Page:** [https://idrisgit.github.io/React-NoteTaker](https://idrisgit.github.io/React-NoteTaker/#demo)
 
   > :warning: **Note:** The current version of React-NoteTaker uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 

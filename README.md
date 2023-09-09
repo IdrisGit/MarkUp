@@ -29,6 +29,8 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 - **Intuitive User Interface:** React-NoteTaker boasts an intuitive and user-friendly interface. With its clean design and straightforward navigation, you can focus on your notes without any distractions.
 
 - **Responsive and Fast:** Whether you're accessing React-NoteTaker from your desktop or mobile device, it offers a responsive experience. Enjoy fast performance, ensuring smooth note-taking and effortless interaction.
+- 
+- **Dark Mode:** Customize your note-taking experience with Dark Mode. Easily switch between light and dark themes to suit your preference.
 
 ## Technologies Used
 
@@ -80,7 +82,7 @@ Here's a brief demonstration of how to use React-NoteTaker:
 Here are some of the upcoming features that will be added:
 
 1. :white_check_mark: **Real-time Markdown Preview**: Implement a feature that provides a real-time preview of Markdown formatting to the user.
-2. **Dark Mode**: Introduce a dark mode option for users who prefer a darker color scheme for the application.
+2. :white_check_mark: **Dark Mode**: Introduce a dark mode option for users who prefer a darker color scheme for the application.
 3. **Deploy with GitHub Actions**: Implement the deployment process using GitHub Actions to automate the deployment process.
 4. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
 5. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.

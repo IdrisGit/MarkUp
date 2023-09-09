@@ -8,16 +8,21 @@ import {
 type Theme = 'light' | 'dark';
 
 interface ThemeContextInterface {
-  theme: Theme;
   toggleTheme: () => void;
+  theme: Theme;
 }
 
-const ThemeContext = createContext<ThemeContextInterface | undefined>(
-  undefined,
-);
+export const ThemeContext =
+  createContext<ThemeContextInterface | null>(null);
 
 export const useTheme = () => {
-  return useContext(ThemeContext);
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error(
+      'useMyContext must be used within a MyContextProvider',
+    );
+  }
+  return context;
 };
 
 export const ThemeProvider = ({
@@ -27,7 +32,7 @@ export const ThemeProvider = ({
 }) => {
   const [theme, setTheme] = useState<Theme>('light');
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 

@@ -1,12 +1,19 @@
 import styles from './ThemeSwitch.module.css';
+import { useTheme } from '../../../context/ThemeContext';
 
 const ThemeSwitch = () => {
+  const { toggleTheme } = useTheme();
+
+  const handleToggle = () => {
+    toggleTheme();
+  };
   return (
     <div className={`${styles.toggleWrapper}`}>
       <input
         type='checkbox'
         className={`${styles.dn}`}
         id='dn'
+        onChange={handleToggle}
       />
       <label
         htmlFor='dn'

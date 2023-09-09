@@ -1,6 +1,6 @@
 # React-NoteTaker
 
-React-NoteTaker is a simple note-taking application built with React. It provides a user-friendly interface for creating and managing notes, with support for Markdown formatting. Update
+React-NoteTaker is a simple note-taking application built with React. It provides a user-friendly interface for creating and managing notes, with support for Markdown formatting.
 
 ## Table of contents
 

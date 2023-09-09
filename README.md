@@ -29,7 +29,7 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 - **Intuitive User Interface:** React-NoteTaker boasts an intuitive and user-friendly interface. With its clean design and straightforward navigation, you can focus on your notes without any distractions.
 
 - **Responsive and Fast:** Whether you're accessing React-NoteTaker from your desktop or mobile device, it offers a responsive experience. Enjoy fast performance, ensuring smooth note-taking and effortless interaction.
-- 
+  
 - **Dark Mode:** Customize your note-taking experience with Dark Mode. Easily switch between light and dark themes to suit your preference.
 
 ## Technologies Used

@@ -1,11 +1,17 @@
+import { ChangeEvent } from 'react';
 import styles from './ThemeSwitch.module.css';
 import { useTheme } from '../../../context/ThemeContext';
 
 const ThemeSwitch = () => {
   const { toggleTheme } = useTheme();
 
-  const handleToggle = () => {
+  const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
     toggleTheme();
+    if (e.target.checked) {
+      document.body.style.backgroundColor = '#646464';
+    } else {
+      document.body.style.backgroundColor = '';
+    }
   };
   return (
     <div className={`${styles.toggleWrapper}`}>

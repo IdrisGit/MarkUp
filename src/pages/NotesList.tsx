@@ -46,7 +46,7 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
       <Card.Body>
         <Stack
           gap={2}
-          className='align-items-center justify-content-center h-100'
+          className='align-items-center justify-content-center h-100 text-dark'
         >
           <span className='fs-5 text-break'>{title}</span>
           <Stack

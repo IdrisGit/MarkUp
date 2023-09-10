@@ -82,9 +82,10 @@ Here are some of the upcoming features that will be added:
 
 1. :white_check_mark: **Real-time Markdown Preview**: Implement a feature that provides a real-time preview of Markdown formatting to the user.
 2. :white_check_mark: **Dark Mode**: Introduce a dark mode option for users who prefer a darker color scheme for the application.
-3. **Deploy with GitHub Actions**: Implement the deployment process using GitHub Actions to automate the deployment process.
-4. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
-5. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.
+3. **PWA (Progressive Web App) Implementation:** Convert the application into a Progressive Web App (PWA) to provide offline access, app-like behavior, and the ability for users to install it on their devices for a seamless mobile experience.
+4. **Deploy with GitHub Actions**: Implement the deployment process using GitHub Actions to automate the deployment process.
+5. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
+6. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.
 
 Feel free to suggest more features or enhancements that you would like to see in React-NoteTaker. Contributions and ideas are welcome!
 

@@ -1,6 +1,6 @@
-# React-NoteTaker
+# MarkUp: Notes Simplified
 
-React-NoteTaker is a simple note-taking application built with React. It provides a user-friendly interface for creating and managing notes, with support for Markdown formatting.
+MarkUp is a simple note-taking application built with React. It provides a user-friendly interface for creating and managing notes, with support for Markdown formatting.
 
 ## Table of contents
 
@@ -24,11 +24,11 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 - **Real-time Markdown Preview:** See a live preview of your notes as you write them in Markdown. Instantly visualize how your formatted text will look, making it easier to create well-structured content.
 
-- **Automatic Tag Updates:** Enjoy seamless tag management. When you update a tag, React-NoteTaker automatically reflects the changes across all notes tagged with that specific tag. Say goodbye to manual tag updates and save valuable time.
+- **Automatic Tag Updates:** Enjoy seamless tag management. When you update a tag, MarkUp automatically reflects the changes across all notes tagged with that specific tag. Say goodbye to manual tag updates and save valuable time.
 
-- **Intuitive User Interface:** React-NoteTaker boasts an intuitive and user-friendly interface. With its clean design and straightforward navigation, you can focus on your notes without any distractions.
+- **Intuitive User Interface:** MarkUp boasts an intuitive and user-friendly interface. With its clean design and straightforward navigation, you can focus on your notes without any distractions.
 
-- **Responsive and Fast:** Whether you're accessing React-NoteTaker from your desktop or mobile device, it offers a responsive experience. Enjoy fast performance, ensuring smooth note-taking and effortless interaction.
+- **Responsive and Fast:** Whether you're accessing MarkUp from your desktop or mobile device, it offers a responsive experience. Enjoy fast performance, ensuring smooth note-taking and effortless interaction.
 - **Dark Mode:** Customize your note-taking experience with Dark Mode. Easily switch between light and dark themes to suit your preference.
 
 ## Technologies Used
@@ -44,15 +44,15 @@ React-NoteTaker is a simple note-taking application built with React. It provide
 
 ## Demo
 
-Check out the live demo of React-NoteTaker:
+Check out the live demo of MarkUp:
 
 - :globe_with_meridians: **Live Page:** [https://idrisgit.github.io/React-NoteTaker](https://idrisgit.github.io/React-NoteTaker/#demo)
 
-  > :warning: **Note:** The current version of React-NoteTaker uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
+  > :warning: **Note:** The current version of MarkUp uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 
 ## Usage
 
-Here's a brief demonstration of how to use React-NoteTaker:
+Here's a brief demonstration of how to use MarkUp:
 
 1. **Homepage**: Upon launching the application, user is presented with the homepage where all their notes are displayed.
 
@@ -66,7 +66,7 @@ Here's a brief demonstration of how to use React-NoteTaker:
 
    ![Edit Note](./readme_assests/edit-note.png)
 
-4. **Filter Notes**: React-NoteTaker allows users to filter notes based on title and tags. They can enter a search query in the search bar to filter notes by title. Additionally, they can select tags from the tag filter dropdown to display only the notes associated with those tags.
+4. **Filter Notes**: MarkUp allows users to filter notes based on title and tags. They can enter a search query in the search bar to filter notes by title. Additionally, they can select tags from the tag filter dropdown to display only the notes associated with those tags.
 
    |                   Filter by Title                   |                    Filter by Tags                     |
    | :-------------------------------------------------: | :---------------------------------------------------: |
@@ -87,11 +87,11 @@ Here are some of the upcoming features that will be added:
 5. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
 6. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.
 
-Feel free to suggest more features or enhancements that you would like to see in React-NoteTaker. Contributions and ideas are welcome!
+Feel free to suggest more features or enhancements that you would like to see in MarkUp. Contributions and ideas are welcome!
 
 ## License
 
-React-NoteTaker is licensed under the [MIT License](LICENSE.md).
+MarkUp is licensed under the [MIT License](LICENSE.md).
 
 ## Contact
 
@@ -100,4 +100,4 @@ If you have any questions, suggestions, or feedback, please feel free to contact
 Email: idris.gadi01@gmail.com  
 GitHub: https://github.com/IdrisGit
 
-Thank you for using React-NoteTaker!
+Thank you for using MarkUp!

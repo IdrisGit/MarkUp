@@ -175,8 +175,8 @@ const NotesList: React.FC<NotesListProp> = ({
 
   return (
     <>
-      <Row className='align-item-center mb-4'>
-        <Col>
+      <Row className='align-item-center mb-4 mt-3 mt-md-0'>
+        <Col className='d-none d-md-block'>
           <h1>Notes</h1>
         </Col>
         <Col xs='auto'>

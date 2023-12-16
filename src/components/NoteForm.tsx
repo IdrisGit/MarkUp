@@ -50,7 +50,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
       <Form onSubmit={handleSubmit}>
         <Stack gap={4}>
           <Row>
-            <Col>
+            <Col
+              xs={12}
+              md={6}
+            >
               <Form.Group controlId='title'>
                 <Form.Label>Title</Form.Label>
                 <Form.Control
@@ -61,7 +64,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col
+              xs={12}
+              md={6}
+            >
               <Form.Group controlId='tags'>
                 <Form.Label>Tags</Form.Label>
                 <CreatableReactSelect

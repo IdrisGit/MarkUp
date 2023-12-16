@@ -17,8 +17,11 @@ const Note: React.FC = () => {
   return (
     <>
       <Stack className='h-100'>
-        <Row className='align-items-center mb-4'>
-          <Col>
+        <Row className='align-items-center mb-4 row-gap-3'>
+          <Col
+            xs={12}
+            md={10}
+          >
             <h1 className='text-break'>{note.title}</h1>
             <Stack
               gap={1}
@@ -35,7 +38,10 @@ const Note: React.FC = () => {
               ))}
             </Stack>
           </Col>
-          <Col xs='auto'>
+          <Col
+            xs={12}
+            md={2}
+          >
             <Stack
               gap={2}
               direction='horizontal'

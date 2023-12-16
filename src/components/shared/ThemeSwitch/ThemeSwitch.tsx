@@ -8,7 +8,7 @@ const ThemeSwitch = () => {
   const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
     toggleTheme();
     if (e.target.checked) {
-      document.body.style.backgroundColor = '#646464';
+      document.body.style.backgroundColor = '#000000CC';
     } else {
       document.body.style.backgroundColor = '';
     }

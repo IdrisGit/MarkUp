@@ -12,9 +12,6 @@ const MainLayout = () => {
       className={`h-100 ${
         theme === 'dark' ? 'text-light' : 'text-dark'
       }`}
-      style={{
-        backgroundColor: theme === 'dark' ? '#3C3C3C' : '',
-      }}
     >
       <Row>
         <Col className='d-flex justify-content-start pt-2 p-md-3'>

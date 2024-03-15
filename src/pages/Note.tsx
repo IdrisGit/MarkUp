@@ -65,9 +65,7 @@ const Note: React.FC = () => {
           className='border border-dark rounded py-2 px-4 mh-100 h-100'
           style={{ minHeight: '85vh' }}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {note.markdown}
-          </ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.markdown}</ReactMarkdown>
         </Row>
       </Stack>
       <DeleteModal

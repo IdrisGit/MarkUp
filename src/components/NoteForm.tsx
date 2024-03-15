@@ -98,9 +98,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
             <Row className='mb-1'>
               <Col xs={2}>
                 <Button
-                  variant={`${
-                    previewOpen ? 'secondary' : 'outline-secondary'
-                  }`}
+                  variant={`${previewOpen ? 'secondary' : 'outline-secondary'}`}
                   className='d-flex align-items-center px-2 w-auto'
                   onClick={() => setPreviewOpen((prev) => !prev)}
                 >
@@ -113,9 +111,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
               <Col xs={12}>
                 {previewOpen ? (
                   <>
-                    <Form.Label className='fs-2 fw-semibold'>
-                      Preview
-                    </Form.Label>
+                    <Form.Label className='fs-2 fw-semibold'>Preview</Form.Label>
                     <div
                       className='border rounded'
                       style={{
@@ -125,24 +121,18 @@ const NoteForm: React.FC<NoteFormProps> = ({
                         padding: '5px 10px',
                       }}
                     >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {markdownPreview}
-                      </ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdownPreview}</ReactMarkdown>
                     </div>
                   </>
                 ) : (
                   <>
-                    <Form.Label className='fs-2 fw-semibold'>
-                      Body
-                    </Form.Label>
+                    <Form.Label className='fs-2 fw-semibold'>Body</Form.Label>
                     <Form.Control
                       required
                       as='textarea'
                       ref={markdownRef}
                       defaultValue={markdown}
-                      onChange={(e) =>
-                        setMarkdownPreview(e.target.value)
-                      }
+                      onChange={(e) => setMarkdownPreview(e.target.value)}
                       rows={22}
                       style={{ resize: 'none' }}
                     />

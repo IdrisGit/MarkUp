@@ -26,15 +26,9 @@ const ThemeSwitch = () => {
         className={`${styles.toggle}`}
       >
         <span className={`${styles.toggle__handler}`}>
-          <span
-            className={`${styles.crater} ${styles.crater1}`}
-          ></span>
-          <span
-            className={`${styles.crater} ${styles.crater2}`}
-          ></span>
-          <span
-            className={`${styles.crater} ${styles.crater3}`}
-          ></span>
+          <span className={`${styles.crater} ${styles.crater1}`}></span>
+          <span className={`${styles.crater} ${styles.crater2}`}></span>
+          <span className={`${styles.crater} ${styles.crater3}`}></span>
         </span>
         <span className={`${styles.star} ${styles.star1}`}></span>
         <span className={`${styles.star} ${styles.star2}`}></span>

@@ -1,16 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './NotesList.module.css';
-import {
-  Button,
-  Col,
-  Row,
-  Stack,
-  Form,
-  Card,
-  Badge,
-  Modal,
-} from 'react-bootstrap';
+import { Button, Col, Row, Stack, Form, Card, Badge, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { Tag } from '../types';
@@ -149,26 +140,19 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   );
 };
 
-const NotesList: React.FC<NotesListProp> = ({
-  notes,
-  availableTags,
-}) => {
+const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const [editTagsModalOpen, setEditTagsModalOpen] =
-    useState<boolean>(false);
+  const [editTagsModalOpen, setEditTagsModalOpen] = useState<boolean>(false);
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
       return (
-        (title === '' ||
-          note.title.toLowerCase().includes(title.toLowerCase())) &&
+        (title === '' || note.title.toLowerCase().includes(title.toLowerCase())) &&
         (selectedTags.length === 0 ||
-          selectedTags.every((tag) =>
-            note.tags.some((noteTag) => noteTag.id === tag.id),
-          ))
+          selectedTags.every((tag) => note.tags.some((noteTag) => noteTag.id === tag.id)))
       );
     });
   }, [notes, title, selectedTags]);

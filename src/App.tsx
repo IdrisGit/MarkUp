@@ -1,8 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useStore } from './store/store';
 import MainLayout from './Layouts/MainLayout';

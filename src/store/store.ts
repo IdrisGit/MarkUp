@@ -43,10 +43,7 @@ export const useStore = create<State>()((set) => ({
   onCreateNote: ({ tags, ...data }) => {
     const id = uuidv4();
     set((state) => {
-      const newNotes = [
-        ...state.notes,
-        { ...data, id: id, tagIds: tags.map((tag) => tag.id) },
-      ];
+      const newNotes = [...state.notes, { ...data, id: id, tagIds: tags.map((tag) => tag.id) }];
       localStorage.setItem('NOTES', JSON.stringify(newNotes));
       return { notes: newNotes };
     });
@@ -71,9 +68,7 @@ export const useStore = create<State>()((set) => ({
   },
   onDeleteNote: (id) =>
     set((state) => {
-      const updatedNotes = state.notes.filter(
-        (note) => note.id !== id,
-      );
+      const updatedNotes = state.notes.filter((note) => note.id !== id);
       localStorage.setItem('NOTES', JSON.stringify(updatedNotes));
       return { notes: updatedNotes };
     }),

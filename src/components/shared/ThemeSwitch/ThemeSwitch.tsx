@@ -3,10 +3,10 @@ import styles from './ThemeSwitch.module.css';
 import { useTheme } from '../../../context/ThemeContext';
 
 const ThemeSwitch = () => {
-  const { toggleTheme } = useTheme();
+  // const { toggleTheme } = useTheme();
 
   const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    toggleTheme();
+    // toggleTheme();
     if (e.target.checked) {
       document.body.style.backgroundColor = '#000000CC';
     } else {

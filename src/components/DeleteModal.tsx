@@ -1,5 +1,14 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button as BSButton, Modal as BSModal } from 'react-bootstrap';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalCloseButton,
+  Button,
+} from '@chakra-ui/react';
 
 interface DeleteModalProps {
   show: boolean;
@@ -10,31 +19,28 @@ interface DeleteModalProps {
 const DeleteModal: React.FC<DeleteModalProps> = ({ show, handleClose, handleDelete }) => {
   return (
     <Modal
-      show={show}
-      onHide={handleClose}
-      centered
+      isOpen={show}
+      onClose={handleClose}
     >
-      <Modal.Header
-        className='text-danger'
-        closeButton
-      >
-        Delete Action
-      </Modal.Header>
-      <Modal.Body>Are you sure you want to delete this note?</Modal.Body>
-      <Modal.Footer>
-        <Button
-          variant='outline-danger'
-          onClick={handleDelete}
-        >
-          Delete
-        </Button>
-        <Button
-          variant='primary'
-          onClick={handleClose}
-        >
-          Close
-        </Button>
-      </Modal.Footer>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Are you sure you want to delete this note?</ModalHeader>
+        <ModalCloseButton />
+        <ModalFooter>
+          <Button
+            variant='outline'
+            onClick={handleDelete}
+          >
+            Delete
+          </Button>
+          <Button
+            variant='fiilled'
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
     </Modal>
   );
 };

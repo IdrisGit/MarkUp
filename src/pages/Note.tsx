@@ -38,7 +38,6 @@ const Note: React.FC = () => {
               <Badge
                 key={tag.id}
                 variant='outline'
-                className='text-truncate'
               >
                 {tag.label}
               </Badge>

@@ -54,14 +54,10 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
     <Card
       as={Link}
       to={`/${id}`}
-      className={`h-100 text-reset text-decoration-none`}
       variant='outline'
     >
       <CardBody>
-        <VStack
-          gap={2}
-          className='align-items-center justify-content-center h-100 text-dark'
-        >
+        <VStack gap={2}>
           <Text>{title}</Text>
           <HStack
             gap={1}
@@ -71,7 +67,6 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
               <Badge
                 key={tag.id}
                 variant='outline'
-                className='text-truncate'
               >
                 {tag.label}
               </Badge>

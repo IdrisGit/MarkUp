@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button as BSButton, Modal as BSModal } from 'react-bootstrap';
 import {
   Modal,
   ModalOverlay,

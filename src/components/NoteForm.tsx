@@ -1,13 +1,9 @@
 import { FormEvent, useRef, useState } from 'react';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuidv4 } from 'uuid';
-import { Button as BSButton, Col, Form, Row, Stack } from 'react-bootstrap';
 import { NoteData, Tag } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
-import { BiSolidShow, BiSolidHide } from 'react-icons/bi';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Flex, Container, Box, FormControl, Input, Textarea, Button } from '@chakra-ui/react';
+import { Flex, Box, FormControl, Input, Textarea, Button } from '@chakra-ui/react';
 
 interface NoteFormProps {
   onSubmit: (data: NoteData) => string;
@@ -29,8 +25,6 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
-  const [markdownPreview, setMarkdownPreview] = useState(markdown);
-  const [previewOpen, setPreviewOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
 

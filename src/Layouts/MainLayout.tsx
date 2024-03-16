@@ -1,28 +1,39 @@
-import { Outlet, Link } from 'react-router-dom';
-import { Col, Container, Row } from 'react-bootstrap';
-import { useTheme } from '../context/ThemeContext';
-import ThemeSwitch from '../components/shared/ThemeSwitch/ThemeSwitch';
-import Logo from '../../public/logo.svg?react';
+import { Outlet } from 'react-router-dom';
+import { Grid, GridItem } from '@chakra-ui/react';
+import NotesList from '../pages/NotesList';
 
-const MainLayout = () => {
+const MainLayout = ({ notes, availableTags }) => {
   // const { theme } = useTheme();
 
   return (
-    <Container className={`h-100 ${'text-dark'}`}>
-      <Row>
-        <Col className='d-flex justify-content-start pt-2 p-md-3'>
-          <Link to={'/'}>
-            <Logo />
-          </Link>
-        </Col>
-        <Col className='d-flex justify-content-end pt-2 p-md-3'>
-          <ThemeSwitch />
-        </Col>
-      </Row>
-      <Row>
+    <Grid
+      height='100%'
+      width='100%'
+      minHeight='100dvh'
+      maxHeight='100dvh'
+      templateColumns='repeat(12, 1fr)'
+      gap={2}
+    >
+      <GridItem
+        height='100%'
+        maxHeight='100dvh'
+        overflowY='auto'
+        colSpan={2}
+      >
+        <NotesList
+          notes={notes}
+          availableTags={availableTags}
+        />
+      </GridItem>
+      <GridItem
+        height='100%'
+        maxHeight='100dvh'
+        overflowY='auto'
+        colSpan={10}
+      >
         <Outlet />
-      </Row>
-    </Container>
+      </GridItem>
+    </Grid>
   );
 };
 

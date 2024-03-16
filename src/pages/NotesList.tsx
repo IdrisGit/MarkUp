@@ -1,11 +1,33 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './NotesList.module.css';
-import { Button, Col, Row, Stack, Form, Card, Badge, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { Tag } from '../types';
 import { useStore } from '../store/store';
+import {
+  Container,
+  VStack,
+  HStack,
+  Box,
+  Flex,
+  Button,
+  FormControl,
+  Input,
+  InputGroup,
+  InputRightElement,
+  List,
+  ListItem,
+  Card,
+  CardBody,
+  Badge,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 
 type SimplifiedNote = {
   tags: Tag[];
@@ -32,30 +54,31 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
     <Card
       as={Link}
       to={`/${id}`}
-      className={`h-100 text-reset text-decoration-none ${styles.card}`}
+      className={`h-100 text-reset text-decoration-none`}
+      variant='outline'
     >
-      <Card.Body>
-        <Stack
+      <CardBody>
+        <VStack
           gap={2}
           className='align-items-center justify-content-center h-100 text-dark'
         >
-          <span className='fs-5 text-break'>{title}</span>
-          <Stack
+          <Text>{title}</Text>
+          <HStack
             gap={1}
-            direction='horizontal'
-            className='justify-content-center flex-wrap'
+            flexWrap='wrap'
           >
             {tags.map((tag) => (
               <Badge
                 key={tag.id}
+                variant='outline'
                 className='text-truncate'
               >
                 {tag.label}
               </Badge>
             ))}
-          </Stack>
-        </Stack>
-      </Card.Body>
+          </HStack>
+        </VStack>
+      </CardBody>
     </Card>
   );
 };
@@ -83,59 +106,58 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
 
   return (
     <Modal
-      show={show}
-      onHide={handleClose}
+      isOpen={show}
+      onClose={handleClose}
     >
-      <Modal.Header closeButton>Edit Tags</Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Stack gap={2}>
-            {availableTags.map((tag) => (
-              <Row key={tag.id}>
-                <Col>
-                  <Form.Control
-                    type='text'
-                    value={tag.label}
-                    onChange={(e) => onUpdate(tag.id, e.target.value)}
-                  />
-                </Col>
-                <Col xs='auto'>
-                  <Button
-                    variant='outline-danger'
-                    onClick={() => onDelete(tag.id)}
-                  >
-                    &times;
-                  </Button>
-                </Col>
-              </Row>
-            ))}
-          </Stack>
-        </Form>
-        <Form>
-          <Stack
-            direction='horizontal'
-            className='mt-5'
-            gap={2}
-          >
-            <Col>
-              <Form.Control
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Edit Tags</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <form>
+            <List
+              spacing='2'
+              padding='0'
+            >
+              {availableTags.map((tag) => (
+                <ListItem key={tag.id}>
+                  <InputGroup>
+                    <Input
+                      type='text'
+                      value={tag.label}
+                      onChange={(e) => onUpdate(tag.id, e.target.value)}
+                    />
+                    <InputRightElement>
+                      <Button
+                        variant='filled'
+                        onClick={() => onDelete(tag.id)}
+                      >
+                        &times;
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                </ListItem>
+              ))}
+            </List>
+          </form>
+          <form>
+            <Flex gap='2'>
+              <Input
                 ref={newTagRef}
                 type='text'
                 defaultValue=''
                 required
               />
-            </Col>
-            <Col xs='auto'>
               <Button
-                variant='outline-primary'
+                variant='outline'
                 onClick={handleAddTag}
               >
                 Add Tag
               </Button>
-            </Col>
-          </Stack>
-        </Form>
-      </Modal.Body>
+            </Flex>
+          </form>
+        </ModalBody>
+      </ModalContent>
     </Modal>
   );
 };
@@ -158,89 +180,102 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
   }, [notes, title, selectedTags]);
 
   return (
-    <>
-      <Row className='align-item-center mb-4 mt-3 mt-md-0'>
-        <Col className='d-none d-md-block'>
-          <h1>Notes</h1>
-        </Col>
-        <Col xs='auto'>
-          <Stack
-            gap={2}
-            direction='horizontal'
+    <VStack
+      width='100%'
+      height='100%'
+      paddingY='16px'
+      paddingX='12px'
+    >
+      <Container>
+        <form>
+          <Flex
+            direction='column'
+            rowGap='2'
           >
+            <Box>
+              <FormControl>
+                <Input
+                  type='text'
+                  value={title}
+                  placeholder='Title'
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl>
+                <ReactSelect
+                  placeholder='Select Tags'
+                  value={selectedTags.map((tag) => {
+                    return { label: tag.label, value: tag.id };
+                  })}
+                  options={availableTags.map((tag) => {
+                    return { label: tag.label, value: tag.id };
+                  })}
+                  onChange={(tags) => {
+                    setSelectedTags(
+                      tags.map((tag) => {
+                        return { label: tag.label, id: tag.value };
+                      }),
+                    );
+                  }}
+                  isMulti
+                />
+              </FormControl>
+            </Box>
+          </Flex>
+        </form>
+      </Container>
+      <Container>
+        <List
+          width='100%'
+          padding='0'
+          spacing='2'
+        >
+          {filteredNotes.map((note) => (
+            <ListItem
+              key={note.id}
+              width='100%'
+            >
+              <NoteCard
+                title={note.title}
+                id={note.id}
+                tags={note.tags}
+              />
+            </ListItem>
+          ))}
+          <ListItem>
             <Link to={'/new'}>
-              <Button variant='primary'>Create New Note</Button>
+              <Button
+                variant='solid'
+                width='100%'
+              >
+                Create New Note
+              </Button>
             </Link>
+          </ListItem>
+          <ListItem>
             <Button
-              variant='outline-secondary'
+              variant='outline'
+              width='100%'
               onClick={() => setEditTagsModalOpen(true)}
             >
               Edit Tags
             </Button>
-          </Stack>
-        </Col>
-      </Row>
-      <Form>
-        <Row className='mb-4'>
-          <Col>
-            <Form.Group controlId='title'>
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type='text'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group controlId='tags'>
-              <Form.Label>Tags</Form.Label>
-              <ReactSelect
-                value={selectedTags.map((tag) => {
-                  return { label: tag.label, value: tag.id };
-                })}
-                options={availableTags.map((tag) => {
-                  return { label: tag.label, value: tag.id };
-                })}
-                onChange={(tags) => {
-                  setSelectedTags(
-                    tags.map((tag) => {
-                      return { label: tag.label, id: tag.value };
-                    }),
-                  );
-                }}
-                isMulti
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-      </Form>
-      <Row
-        xs={1}
-        sm={3}
-        lg={3}
-        xl={4}
-        className='g-3'
-      >
-        {filteredNotes.map((note) => (
-          <Col key={note.id}>
-            <NoteCard
-              title={note.title}
-              id={note.id}
-              tags={note.tags}
-            />
-          </Col>
-        ))}
-      </Row>
-      <EditTagsModal
-        show={editTagsModalOpen}
-        handleClose={() => setEditTagsModalOpen(false)}
-        availableTags={availableTags}
-        onAdd={addTag}
-        onUpdate={onUpdateTag}
-        onDelete={onDeleteTag}
-      />
-    </>
+          </ListItem>
+        </List>
+      </Container>
+      {editTagsModalOpen && (
+        <EditTagsModal
+          show={editTagsModalOpen}
+          handleClose={() => setEditTagsModalOpen(false)}
+          availableTags={availableTags}
+          onAdd={addTag}
+          onUpdate={onUpdateTag}
+          onDelete={onDeleteTag}
+        />
+      )}
+    </VStack>
   );
 };
 

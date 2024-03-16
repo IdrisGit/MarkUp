@@ -12,17 +12,14 @@ const EditNote: React.FC<EditNoteProps> = ({ availableTags }) => {
   const note = useNote();
 
   return (
-    <>
-      <h1>Edit Note</h1>
-      <NoteForm
-        title={note.title}
-        markdown={note.markdown}
-        tags={note.tags}
-        availableTags={availableTags}
-        onAddTag={addTag}
-        onSubmit={(data) => onUpdateNote(note.id, data)}
-      />
-    </>
+    <NoteForm
+      title={note.title}
+      markdown={note.markdown}
+      tags={note.tags}
+      availableTags={availableTags}
+      onAddTag={addTag}
+      onSubmit={(data) => onUpdateNote(note.id, data)}
+    />
   );
 };
 

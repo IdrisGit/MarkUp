@@ -26,7 +26,12 @@ function App() {
     [
       {
         path: '/',
-        element: <MainLayout />,
+        element: (
+          <MainLayout
+            notes={notesWithTags}
+            availableTags={tags}
+          />
+        ),
         errorElement: <ErrorPage />,
         children: [
           {

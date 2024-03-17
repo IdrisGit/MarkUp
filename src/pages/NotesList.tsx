@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { Tag } from '../types';
 import { useStore } from '../store/store';
@@ -28,11 +28,14 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import { MdAdd } from 'react-icons/md';
+import { LuClipboardEdit } from 'react-icons/lu';
 
 type SimplifiedNote = {
   tags: Tag[];
   title: string;
   id: string;
+  selectedId: string;
 };
 
 interface NotesListProp {
@@ -49,16 +52,23 @@ interface EditTagsModalProps {
   onAdd: (tag: Tag) => void;
 }
 
-const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
+const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags, selectedId }) => {
   return (
     <Card
       as={Link}
       to={`/${id}`}
       variant='outline'
+      bgColor={selectedId === id ? 'gray.500' : 'gray.300'}
+      _hover={{
+        backgroundColor: 'gray.400',
+      }}
     >
-      <CardBody>
-        <VStack gap={2}>
-          <Text>{title}</Text>
+      <CardBody p='4'>
+        <VStack
+          gap={2}
+          alignItems='flex-start'
+        >
+          <Text fontSize='sm'>{title}</Text>
           <HStack
             gap={1}
             flexWrap='wrap'
@@ -67,6 +77,9 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags }) => {
               <Badge
                 key={tag.id}
                 variant='outline'
+                fontSize='0.6em'
+                borderColor='gray.500'
+                color='gray.800'
               >
                 {tag.label}
               </Badge>
@@ -163,6 +176,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
   const [editTagsModalOpen, setEditTagsModalOpen] = useState<boolean>(false);
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
+  const { id } = useParams();
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -180,6 +194,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
       height='100%'
       paddingY='16px'
       paddingX='12px'
+      bgColor='gray.50'
     >
       <Container>
         <form>
@@ -236,6 +251,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 title={note.title}
                 id={note.id}
                 tags={note.tags}
+                selectedId={id ? id.toString() : ''}
               />
             </ListItem>
           ))}
@@ -244,6 +260,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
               <Button
                 variant='solid'
                 width='100%'
+                fontSize='sm'
+                bgColor='gray.300'
+                _hover={{
+                  backgroundColor: 'gray.400',
+                }}
+                rightIcon={<MdAdd />}
               >
                 Create New Note
               </Button>
@@ -253,6 +275,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
             <Button
               variant='outline'
               width='100%'
+              fontSize='sm'
+              bgColor='gray.300'
+              _hover={{
+                backgroundColor: 'gray.400',
+              }}
+              rightIcon={<LuClipboardEdit />}
               onClick={() => setEditTagsModalOpen(true)}
             >
               Edit Tags

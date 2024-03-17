@@ -27,6 +27,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { MdAdd } from 'react-icons/md';
 import { LuClipboardEdit } from 'react-icons/lu';
@@ -53,14 +54,16 @@ interface EditTagsModalProps {
 }
 
 const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags, selectedId }) => {
+  const cardBackgroundColor = useColorModeValue('#d2d3db', '#5C8374');
+  const cardHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
   return (
     <Card
       as={Link}
       to={`/${id}`}
       variant='outline'
-      bgColor={selectedId === id ? 'gray.500' : 'gray.300'}
+      bgColor={selectedId === id ? cardHoverBackgroundColor : cardBackgroundColor}
       _hover={{
-        backgroundColor: 'gray.400',
+        backgroundColor: cardHoverBackgroundColor,
       }}
     >
       <CardBody p='4'>
@@ -78,8 +81,6 @@ const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags, selectedId }) => 
                 key={tag.id}
                 variant='outline'
                 fontSize='0.6em'
-                borderColor='gray.500'
-                color='gray.800'
               >
                 {tag.label}
               </Badge>
@@ -177,6 +178,9 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
   const { id } = useParams();
+  const sidebarBackgroundColor = useColorModeValue('#e4e5f1', '#1B4242');
+  const buttonBackgroundColor = useColorModeValue('#d2d3db', '#5C8374');
+  const buttonHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -194,9 +198,9 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
       height='100%'
       paddingY='16px'
       paddingX='12px'
-      bgColor='gray.50'
+      bgColor={sidebarBackgroundColor}
     >
-      <Container>
+      <Container padding='0'>
         <form>
           <Flex
             direction='column'
@@ -207,7 +211,9 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 <Input
                   type='text'
                   value={title}
-                  placeholder='Title'
+                  placeholder='Search Title'
+                  bgColor='white'
+                  borderColor='gray.300'
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </FormControl>
@@ -236,7 +242,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
           </Flex>
         </form>
       </Container>
-      <Container>
+      <Container padding='0'>
         <List
           width='100%'
           padding='0'
@@ -261,9 +267,9 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 variant='solid'
                 width='100%'
                 fontSize='sm'
-                bgColor='gray.300'
+                bgColor={buttonBackgroundColor}
                 _hover={{
-                  backgroundColor: 'gray.400',
+                  backgroundColor: buttonHoverBackgroundColor,
                 }}
                 rightIcon={<MdAdd />}
               >
@@ -273,12 +279,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
           </ListItem>
           <ListItem>
             <Button
-              variant='outline'
+              variant='solid'
               width='100%'
               fontSize='sm'
-              bgColor='gray.300'
+              bgColor={buttonBackgroundColor}
               _hover={{
-                backgroundColor: 'gray.400',
+                backgroundColor: buttonHoverBackgroundColor,
               }}
               rightIcon={<LuClipboardEdit />}
               onClick={() => setEditTagsModalOpen(true)}

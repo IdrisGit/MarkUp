@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Grid, GridItem, Spacer, IconButton, useColorMode } from '@chakra-ui/react';
+import { Grid, GridItem, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import NotesList from '../pages/NotesList';
 import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
 
 const MainLayout = ({ notes, availableTags }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const bodyBackgroundColor = useColorModeValue('#fafafa', '#092635');
 
   return (
     <Grid
@@ -16,6 +17,7 @@ const MainLayout = ({ notes, availableTags }) => {
       templateRows='repeat(12, 1fr)'
       templateColumns='repeat(12, 1fr)'
       gap={2}
+      bgColor={bodyBackgroundColor}
     >
       <GridItem
         height='100%'

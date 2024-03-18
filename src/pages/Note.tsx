@@ -5,6 +5,7 @@ import { useNote } from '../hooks/useNote';
 import { useStore } from '../store/store';
 import DeleteModal from '../components/DeleteModal';
 import remarkGfm from 'remark-gfm';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { Flex, Box, Badge, Heading, IconButton, useColorModeValue } from '@chakra-ui/react';
 import { MdEdit } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
@@ -73,7 +74,13 @@ const Note: React.FC = () => {
         </Box>
       </Box>
       <Box flex='1'>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.markdown}</ReactMarkdown>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={ChakraUIRenderer()}
+          skipHtml
+        >
+          {note.markdown}
+        </ReactMarkdown>
       </Box>
       {showDeleteModal && (
         <DeleteModal

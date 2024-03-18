@@ -14,7 +14,7 @@ const MainLayout = ({ notes, availableTags }) => {
       width='100%'
       minHeight='100dvh'
       maxHeight='100dvh'
-      templateRows='repeat(12, 1fr)'
+      templateRows='repeat(24, 1fr)'
       templateColumns='repeat(12, 1fr)'
       gap={2}
       bgColor={bodyBackgroundColor}
@@ -24,7 +24,7 @@ const MainLayout = ({ notes, availableTags }) => {
         maxHeight='100dvh'
         overflowY='auto'
         colSpan={2}
-        rowSpan={12}
+        rowSpan={24}
       >
         <NotesList
           notes={notes}
@@ -52,7 +52,7 @@ const MainLayout = ({ notes, availableTags }) => {
         maxHeight='100dvh'
         overflowY='auto'
         colSpan={10}
-        rowSpan={11}
+        rowSpan={23}
       >
         <Outlet />
       </GridItem>

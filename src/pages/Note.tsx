@@ -15,7 +15,8 @@ const Note: React.FC = () => {
   const { onDeleteNote } = useStore();
   const note = useNote();
   const navigate = useNavigate();
-  const iconBorderColor = useColorModeValue('#484b6a', '#9EC8B9');
+  const iconBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
+  const iconHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
 
   return (
     <Flex
@@ -54,12 +55,18 @@ const Note: React.FC = () => {
             aria-label='Edit Note'
             onClick={() => navigate(`/${note.id}/edit`)}
             borderColor={iconBorderColor}
+            _hover={{
+              borderColor: iconHoverBorderColor,
+            }}
             icon={<MdEdit />}
           />
           <IconButton
             variant='outline'
             aria-label='Edit Note'
-            borderColor='red.400'
+            borderColor='red.200'
+            _hover={{
+              borderColor: 'red.500',
+            }}
             onClick={() => setShowDeleteModal(true)}
             icon={<IoMdTrash />}
           />

@@ -178,9 +178,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
   const { id } = useParams();
-  const sidebarBackgroundColor = useColorModeValue('#e4e5f1', '#1B4242');
-  const buttonBackgroundColor = useColorModeValue('#d2d3db', '#5C8374');
-  const buttonHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
+  const sidebarBackgroundColor = useColorModeValue('#E4E5F1', '#1B4242');
+  const buttonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
+  const buttonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
+  const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
+  const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
+  const inputColor = useColorModeValue('#1A202C', '#FFFFFFEB');
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -212,8 +215,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                   type='text'
                   value={title}
                   placeholder='Search Title'
-                  bgColor='white'
-                  borderColor='gray.300'
+                  color={inputColor}
+                  bgColor={inputBackgroundColor}
+                  borderColor={inputBorderColor}
+                  _placeholder={{
+                    color: inputColor,
+                  }}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </FormControl>
@@ -222,6 +229,27 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
               <FormControl>
                 <ReactSelect
                   placeholder='Select Tags'
+                  styles={{
+                    control: (baseStyles) => ({
+                      ...baseStyles,
+                      color: inputColor,
+                      backgroundColor: inputBackgroundColor,
+                      borderColor: inputBorderColor,
+                    }),
+                    placeholder: (baseStyles) => ({
+                      ...baseStyles,
+                      color: inputColor,
+                    }),
+                    menuList: (baseStyles) => ({
+                      ...baseStyles,
+                      backgroundColor: inputBackgroundColor,
+                    }),
+                    option: (baseStyles, state) => ({
+                      ...baseStyles,
+                      color: inputColor,
+                      backgroundColor: state.isFocused ? buttonHoverBackgroundColor : undefined,
+                    }),
+                  }}
                   value={selectedTags.map((tag) => {
                     return { label: tag.label, value: tag.id };
                   })}

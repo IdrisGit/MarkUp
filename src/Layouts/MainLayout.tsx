@@ -6,7 +6,7 @@ import { CiLight } from 'react-icons/ci';
 
 const MainLayout = ({ notes, availableTags }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bodyBackgroundColor = useColorModeValue('#fafafa', '#092635');
+  const bodyBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
 
   return (
     <Grid

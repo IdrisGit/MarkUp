@@ -187,7 +187,6 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
   const { id } = useParams();
-  const sidebarBackgroundColor = useColorModeValue('#E4E5F1', '#1B4242');
   const buttonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
   const buttonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
   const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
@@ -210,7 +209,6 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
       height='100%'
       paddingY='16px'
       paddingX='12px'
-      bgColor={sidebarBackgroundColor}
     >
       <Container padding='0'>
         <form>

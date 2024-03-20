@@ -23,11 +23,12 @@ const Note: React.FC = () => {
     <Flex
       direction='column'
       margin='auto'
-      maxWidth='80%'
+      maxWidth={{ base: '90%', md: '80%' }}
     >
       <Box
         paddingY='16px'
         display='flex'
+        flexDirection={{ base: 'column-reverse', md: 'row' }}
         width='100%'
         justifyContent='space-between'
       >
@@ -49,6 +50,7 @@ const Note: React.FC = () => {
         </Box>
         <Box
           display='flex'
+          alignSelf={{ base: 'flex-end', md: 'flex-start' }}
           gap='2'
         >
           <IconButton

@@ -1,12 +1,28 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Grid, GridItem, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import {
+  Grid,
+  GridItem,
+  IconButton,
+  Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  useColorMode,
+  useColorModeValue,
+  useBreakpoint,
+} from '@chakra-ui/react';
 import NotesList from '../pages/NotesList';
 import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 const MainLayout = ({ notes, availableTags }) => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const bodyBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
+  const sidebarBackgroundColor = useColorModeValue('#E4E5F1', '#1B4242');
+  const breakpoint = useBreakpoint({ ssr: false });
 
   return (
     <Grid
@@ -19,26 +35,55 @@ const MainLayout = ({ notes, availableTags }) => {
       gap={2}
       bgColor={bodyBackgroundColor}
     >
-      <GridItem
-        height='100%'
-        maxHeight='100dvh'
-        overflowY='auto'
-        colSpan={2}
-        rowSpan={24}
-      >
-        <NotesList
-          notes={notes}
-          availableTags={availableTags}
-        />
-      </GridItem>
+      {breakpoint === ('base' || 'sm') ? (
+        <Drawer
+          isOpen={isNavOpen}
+          onClose={() => setIsNavOpen(false)}
+          placement='left'
+        >
+          <DrawerOverlay />
+          <DrawerContent bgColor={sidebarBackgroundColor}>
+            <DrawerBody p={0}>
+              <NotesList
+                notes={notes}
+                availableTags={availableTags}
+              />
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        <GridItem
+          height='100%'
+          maxHeight='100dvh'
+          overflowY='auto'
+          colSpan={2}
+          rowSpan={24}
+          bgColor={sidebarBackgroundColor}
+        >
+          <NotesList
+            notes={notes}
+            availableTags={availableTags}
+          />
+        </GridItem>
+      )}
       <GridItem
         height='100%'
         width='100%'
-        colSpan={10}
+        colSpan={{ base: 12, sm: 10 }}
         rowSpan={1}
         display='flex'
-        justifyContent='flex-end'
+        justifyContent={{ base: 'space-between', md: 'flex-end' }}
+        alignItems='center'
+        pt={2}
+        px={4}
       >
+        <IconButton
+          aria-label='Change Theme'
+          variant='outline'
+          size='md'
+          onClick={() => setIsNavOpen(true)}
+          icon={<RxHamburgerMenu />}
+        />
         <IconButton
           aria-label='Change Theme'
           variant='flushed'
@@ -51,7 +96,7 @@ const MainLayout = ({ notes, availableTags }) => {
         height='100%'
         maxHeight='100dvh'
         overflowY='auto'
-        colSpan={10}
+        colSpan={{ base: 12, sm: 10 }}
         rowSpan={23}
       >
         <Outlet />

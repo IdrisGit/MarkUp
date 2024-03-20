@@ -62,7 +62,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
     >
       <Flex
         direction='column'
-        width='80%'
+        maxWidth={{ base: '90%', md: '80%' }}
         margin='auto'
         height='100%'
         paddingY='16px'
@@ -90,7 +90,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
               />
             </FormControl>
           </Box>
-          <Box width='50%'>
+          <Box width={{ base: '100%', md: '50%' }}>
             <CreatableReactSelect
               placeholder='Select Tags'
               styles={{

@@ -124,7 +124,7 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
       <ModalContent>
         <ModalHeader>Edit Tags</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
+        <ModalBody pb={5}>
           <form>
             <List
               spacing='2'

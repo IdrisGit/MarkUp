@@ -1,12 +1,17 @@
 import { FormEvent, useRef, useState } from 'react';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, Col, Form, Row, Stack } from 'react-bootstrap';
 import { NoteData, Tag } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
-import { BiSolidShow, BiSolidHide } from 'react-icons/bi';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
+import {
+  Flex,
+  Box,
+  FormControl,
+  Input,
+  Textarea,
+  Button,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 interface NoteFormProps {
   onSubmit: (data: NoteData) => string;
@@ -28,10 +33,15 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
-  const [markdownPreview, setMarkdownPreview] = useState(markdown);
-  const [previewOpen, setPreviewOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const saveButtonBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
+  const saveButtonHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
+  const saveButtonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
+  const saveButtonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
+  const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
+  const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
+  const inputColor = useColorModeValue('#1A202C', '#FFFFFFEB');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -46,129 +56,128 @@ const NoteForm: React.FC<NoteFormProps> = ({
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmit}>
-        <Stack gap={4}>
-          <Row>
-            <Col
-              xs={12}
-              md={6}
-            >
-              <Form.Group controlId='title'>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  ref={titleRef}
-                  type='text'
-                  defaultValue={title}
-                  required
-                />
-              </Form.Group>
-            </Col>
-            <Col
-              xs={12}
-              md={6}
-            >
-              <Form.Group controlId='tags'>
-                <Form.Label>Tags</Form.Label>
-                <CreatableReactSelect
-                  onCreateOption={(label) => {
-                    const newTag = { id: uuidv4(), label: label };
-                    onAddTag(newTag);
-                    setSelectedTags((prev) => [...prev, newTag]);
-                  }}
-                  value={seletectedTags.map((tag) => {
-                    return { label: tag.label, value: tag.id };
-                  })}
-                  options={availableTags.map((tag) => {
-                    return { label: tag.label, value: tag.id };
-                  })}
-                  onChange={(tags) => {
-                    setSelectedTags(
-                      tags.map((tag) => {
-                        return { label: tag.label, id: tag.value };
-                      }),
-                    );
-                  }}
-                  isMulti
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Form.Group controlId='markdown'>
-            <Row className='mb-1'>
-              <Col xs={2}>
-                <Button
-                  variant={`${
-                    previewOpen ? 'secondary' : 'outline-secondary'
-                  }`}
-                  className='d-flex align-items-center px-2 w-auto'
-                  onClick={() => setPreviewOpen((prev) => !prev)}
-                >
-                  {previewOpen ? <BiSolidHide /> : <BiSolidShow />}{' '}
-                  <span className='ms-1'>Preview</span>
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                {previewOpen ? (
-                  <>
-                    <Form.Label className='fs-2 fw-semibold'>
-                      Preview
-                    </Form.Label>
-                    <div
-                      className='border rounded'
-                      style={{
-                        // overflow: 'auto',
-                        // height: '38.3em',
-                        // maxHeight: '38.3em',
-                        padding: '5px 10px',
-                      }}
-                    >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {markdownPreview}
-                      </ReactMarkdown>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <Form.Label className='fs-2 fw-semibold'>
-                      Body
-                    </Form.Label>
-                    <Form.Control
-                      required
-                      as='textarea'
-                      ref={markdownRef}
-                      defaultValue={markdown}
-                      onChange={(e) =>
-                        setMarkdownPreview(e.target.value)
-                      }
-                      rows={22}
-                      style={{ resize: 'none' }}
-                    />
-                  </>
-                )}
-              </Col>
-            </Row>
-          </Form.Group>
-          <Stack
-            gap={2}
-            direction='horizontal'
-            className='justify-content-end'
+    <form
+      onSubmit={handleSubmit}
+      style={{ height: '100%' }}
+    >
+      <Flex
+        direction='column'
+        maxWidth={{ base: '90%', md: '80%' }}
+        margin='auto'
+        height='100%'
+        paddingY='16px'
+        gap='5'
+      >
+        <Box
+          display='flex'
+          flexDirection='column'
+          gap='2'
+        >
+          <Box>
+            <FormControl>
+              <Input
+                ref={titleRef}
+                type='text'
+                defaultValue={title}
+                placeholder='Title'
+                color={inputColor}
+                borderColor={inputBorderColor}
+                _placeholder={{
+                  color: inputColor,
+                  opacity: 0.85,
+                }}
+                required
+              />
+            </FormControl>
+          </Box>
+          <Box width={{ base: '100%', md: '50%' }}>
+            <CreatableReactSelect
+              placeholder='Select Tags'
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  backgroundColor: inputBackgroundColor,
+                  borderColor: inputBorderColor,
+                }),
+                placeholder: (baseStyles) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  opacity: 0.85,
+                }),
+                menuList: (baseStyles) => ({
+                  ...baseStyles,
+                  backgroundColor: inputBackgroundColor,
+                }),
+                option: (baseStyles, state) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  backgroundColor: state.isFocused ? saveButtonHoverBackgroundColor : undefined,
+                }),
+              }}
+              onCreateOption={(label) => {
+                const newTag = { id: uuidv4(), label: label };
+                onAddTag(newTag);
+                setSelectedTags((prev) => [...prev, newTag]);
+              }}
+              value={seletectedTags.map((tag) => {
+                return { label: tag.label, value: tag.id };
+              })}
+              options={availableTags.map((tag) => {
+                return { label: tag.label, value: tag.id };
+              })}
+              onChange={(tags) => {
+                setSelectedTags(
+                  tags.map((tag) => {
+                    return { label: tag.label, id: tag.value };
+                  }),
+                );
+              }}
+              isMulti
+            />
+          </Box>
+        </Box>
+        <Box height='100%'>
+          <Textarea
+            required
+            variant='outline'
+            ref={markdownRef}
+            defaultValue={markdown}
+            height='100%'
+            resize='none'
+          />
+        </Box>
+        <Box
+          display='flex'
+          gap={2}
+          justifyContent='flex-end'
+        >
+          <Button
+            type='submit'
+            backgroundColor={saveButtonBackgroundColor}
+            border={`1px solid ${saveButtonBorderColor}`}
+            _hover={{
+              backgroundColor: saveButtonHoverBackgroundColor,
+              borderColor: saveButtonHoverBorderColor,
+            }}
           >
-            <Button type='submit'>Save</Button>
-            <Link to={'..'}>
-              <Button
-                type='button'
-                variant='outline-secondary'
-              >
-                Cancel
-              </Button>
-            </Link>
-          </Stack>
-        </Stack>
-      </Form>
-    </>
+            Save
+          </Button>
+          <Link to={'..'}>
+            <Button
+              type='button'
+              variant='outline'
+              borderColor='red.200'
+              _hover={{
+                borderColor: 'red.500',
+              }}
+            >
+              Cancel
+            </Button>
+          </Link>
+        </Box>
+      </Flex>
+    </form>
   );
 };
 

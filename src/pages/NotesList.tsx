@@ -101,6 +101,8 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   onDelete,
 }) => {
   const newTagRef = useRef<HTMLInputElement>(null);
+  const addBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
+  const addHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
 
   const handleAddTag = () => {
     if (newTagRef.current?.value.trim().length) {
@@ -150,7 +152,10 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
             </List>
           </form>
           <form>
-            <Flex gap='2'>
+            <Flex
+              gap='2'
+              mt={4}
+            >
               <Input
                 ref={newTagRef}
                 type='text'
@@ -160,6 +165,10 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
               <Button
                 variant='outline'
                 onClick={handleAddTag}
+                borderColor={addBorderColor}
+                _hover={{
+                  borderColor: addHoverBorderColor,
+                }}
               >
                 Add Tag
               </Button>
@@ -220,6 +229,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                   borderColor={inputBorderColor}
                   _placeholder={{
                     color: inputColor,
+                    opacity: 0.85,
                   }}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -239,6 +249,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                     placeholder: (baseStyles) => ({
                       ...baseStyles,
                       color: inputColor,
+                      opacity: 0.85,
                     }),
                     menuList: (baseStyles) => ({
                       ...baseStyles,

@@ -3,7 +3,15 @@ import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteData, Tag } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
-import { Flex, Box, FormControl, Input, Textarea, Button } from '@chakra-ui/react';
+import {
+  Flex,
+  Box,
+  FormControl,
+  Input,
+  Textarea,
+  Button,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 interface NoteFormProps {
   onSubmit: (data: NoteData) => string;
@@ -27,6 +35,13 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
 
   const navigate = useNavigate();
+  const saveButtonBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
+  const saveButtonHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
+  const saveButtonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
+  const saveButtonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
+  const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
+  const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
+  const inputColor = useColorModeValue('#1A202C', '#FFFFFFEB');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -65,13 +80,41 @@ const NoteForm: React.FC<NoteFormProps> = ({
                 type='text'
                 defaultValue={title}
                 placeholder='Title'
+                color={inputColor}
+                borderColor={inputBorderColor}
+                _placeholder={{
+                  color: inputColor,
+                  opacity: 0.85,
+                }}
                 required
               />
             </FormControl>
           </Box>
-          <Box width='25%'>
+          <Box width='50%'>
             <CreatableReactSelect
               placeholder='Select Tags'
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  backgroundColor: inputBackgroundColor,
+                  borderColor: inputBorderColor,
+                }),
+                placeholder: (baseStyles) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  opacity: 0.85,
+                }),
+                menuList: (baseStyles) => ({
+                  ...baseStyles,
+                  backgroundColor: inputBackgroundColor,
+                }),
+                option: (baseStyles, state) => ({
+                  ...baseStyles,
+                  color: inputColor,
+                  backgroundColor: state.isFocused ? saveButtonHoverBackgroundColor : undefined,
+                }),
+              }}
               onCreateOption={(label) => {
                 const newTag = { id: uuidv4(), label: label };
                 onAddTag(newTag);
@@ -109,11 +152,25 @@ const NoteForm: React.FC<NoteFormProps> = ({
           gap={2}
           justifyContent='flex-end'
         >
-          <Button type='submit'>Save</Button>
+          <Button
+            type='submit'
+            backgroundColor={saveButtonBackgroundColor}
+            border={`1px solid ${saveButtonBorderColor}`}
+            _hover={{
+              backgroundColor: saveButtonHoverBackgroundColor,
+              borderColor: saveButtonHoverBorderColor,
+            }}
+          >
+            Save
+          </Button>
           <Link to={'..'}>
             <Button
               type='button'
               variant='outline'
+              borderColor='red.200'
+              _hover={{
+                borderColor: 'red.500',
+              }}
             >
               Cancel
             </Button>

@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { Tag } from '../types';
+import { Tag, SimplifiedNote } from '../types';
 import { useStore } from '../store/store';
 import {
   Container,
@@ -31,13 +31,6 @@ import {
 } from '@chakra-ui/react';
 import { MdAdd } from 'react-icons/md';
 import { LuClipboardEdit } from 'react-icons/lu';
-
-type SimplifiedNote = {
-  tags: Tag[];
-  title: string;
-  id: string;
-  selectedId: string;
-};
 
 interface NotesListProp {
   notes: SimplifiedNote[];
@@ -119,9 +112,10 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
     <Modal
       isOpen={show}
       onClose={handleClose}
+      isCentered
     >
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent margin={{ base: 4, md: 0 }}>
         <ModalHeader>Edit Tags</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={5}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   Grid,
@@ -13,11 +13,17 @@ import {
   useBreakpoint,
 } from '@chakra-ui/react';
 import NotesList from '../pages/NotesList';
+import { SimplifiedNote, Tag } from '../types';
 import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
-const MainLayout = ({ notes, availableTags }) => {
+interface MainLayoutProp {
+  notes: SimplifiedNote[];
+  availableTags: Tag[];
+}
+
+const MainLayout: React.FC<MainLayoutProp> = ({ notes, availableTags }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const bodyBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
@@ -81,6 +87,7 @@ const MainLayout = ({ notes, availableTags }) => {
           aria-label='Change Theme'
           variant='outline'
           size='md'
+          display={{ base: 'inherit', md: 'none' }}
           onClick={() => setIsNavOpen(true)}
           icon={<RxHamburgerMenu />}
         />

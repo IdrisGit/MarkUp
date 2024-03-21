@@ -7,7 +7,7 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 - [Features](#features)
 - [Technologies](#technologies-used)
 - [Demo](#demo)
-- [Usage](#usage)
+- [Screenshots](#screenshots)
 - [Todo](#todo-future-plans)
 - [License](#license)
 - [Contact](#contact)
@@ -50,9 +50,7 @@ Check out the live demo of MarkUp:
 
   > :warning: **Note:** The current version of MarkUp uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 
-## Usage
-
-Here's a brief demonstration of how to use MarkUp:
+## Screenshots
 
 1. **Homepage**:
 

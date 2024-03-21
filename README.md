@@ -36,7 +36,7 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 - :label: TypeScript v5
 - :atom_symbol: React v18
 - :link: React Router v6
-- :art: Bootstrap v5
+- :art: ~~Bootstrap v5~~ Chakra UI v2.8
 - :bear: Zustand v4
 - :arrow_down: React Select v5.7
 - :pencil: React Markdown v8.0
@@ -54,27 +54,39 @@ Check out the live demo of MarkUp:
 
 Here's a brief demonstration of how to use MarkUp:
 
-1. **Homepage**: Upon launching the application, user is presented with the homepage where all their notes are displayed.
+1. **Homepage**:
 
    ![Homepage](./readme_assests/home-page.png)
 
-2. **Create New Note**: Users can click on the "Create New Note" button to create a new note. They can enter the title, content, and optionally assign tags to categorize the note.
+2. **Create New Note**:
 
    ![Create New Note](./readme_assests/new-note-page.png)
 
-3. **Edit Note**: To edit an existing note, user can click on the "Edit" button associated with the specific note. This opens a form where they can update the title, content, or tags of the note.
+3. **Edit Note**:
 
    ![Edit Note](./readme_assests/edit-note.png)
 
-4. **Filter Notes**: MarkUp allows users to filter notes based on title and tags. They can enter a search query in the search bar to filter notes by title. Additionally, they can select tags from the tag filter dropdown to display only the notes associated with those tags.
+4. **Filter Notes**:
 
-   |                   Filter by Title                   |                    Filter by Tags                     |
-   | :-------------------------------------------------: | :---------------------------------------------------: |
-   | ![Filter by Title](./readme_assests/search-tab.png) | ![Filter by Tags](./readme_assests/filterby-tags.png) |
+   |                  Dark Mode                   |                   Light Mode                   |
+   | :------------------------------------------: | :--------------------------------------------: |
+   | ![Dark Mode](./readme_assests/dark-mode.png) | ![Light Mode](./readme_assests/light-mode.png) |
 
-5. **Edit Tags**: Users can manage the available tags in the application by accessing the "Edit Tags" functionality. Here, they can add new tags, remove existing ones, or update the labels of the tags.
+5. **Edit Tags**:
 
    ![Edit Tags](./readme_assests/edit-tags.png)
+
+6. **Mobile Responsive**:
+<table style="width: 100%">
+   <tr>
+      <td align="center">
+         <img src="./readme_assests/mobile-nav.png" />
+      </td>
+      <td align="center">
+         <img src="./readme_assests/mobile-home.png" />
+      </td>
+   </tr>
+</table>
 
 ## TODO (Future Plans)
 

@@ -18,10 +18,8 @@ interface State {
 const getNotes = (): RawNote[] => {
   if (window.location.hash.includes('#demo')) {
     if (localStorage.getItem('NOTES') === null) {
-      if (window.location.hash.includes('#demo')) {
-        localStorage.setItem('NOTES', JSON.stringify(demoNotes));
-        return JSON.parse(JSON.stringify(demoNotes));
-      }
+      localStorage.setItem('NOTES', JSON.stringify(demoNotes));
+      return JSON.parse(JSON.stringify(demoNotes));
     }
   }
   return JSON.parse(localStorage.getItem('NOTES') || '[]');

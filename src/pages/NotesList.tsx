@@ -46,7 +46,11 @@ interface EditTagsModalProps {
   onAdd: (tag: Tag) => void;
 }
 
-const NoteCard: React.FC<SimplifiedNote> = ({ id, title, tags, selectedId }) => {
+interface NoteCardProps extends SimplifiedNote {
+  selectedId: string;
+}
+
+const NoteCard: React.FC<NoteCardProps> = ({ id, title, tags, selectedId }) => {
   const cardBackgroundColor = useColorModeValue('#d2d3db', '#5C8374');
   const cardHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
   return (

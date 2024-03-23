@@ -27,5 +27,4 @@ export type SimplifiedNote = {
   tags: Tag[];
   title: string;
   id: string;
-  selectedId?: string;
 };

@@ -46,7 +46,7 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 
 Check out the live demo of MarkUp:
 
-- :globe_with_meridians: **Live Page:** [https://idrisgit.github.io/React-NoteTaker](https://idrisgit.github.io/React-NoteTaker/#demo)
+- :globe_with_meridians: **Live Page:** [https://idrisgit.github.io/MarkUp](https://idrisgit.github.io/MarkUp/#demo)
 
   > :warning: **Note:** The current version of MarkUp uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 

@@ -25,15 +25,19 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ show, handleClose, handleDele
       <ModalContent>
         <ModalHeader>Are you sure you want to delete this note?</ModalHeader>
         <ModalCloseButton />
-        <ModalFooter>
+        <ModalFooter gap={2}>
           <Button
-            variant='outline'
+            variant='solid'
+            bgColor='red.400'
+            _hover={{
+              backgroundColor: 'red.500',
+            }}
             onClick={handleDelete}
           >
             Delete
           </Button>
           <Button
-            variant='fiilled'
+            variant='outline'
             onClick={handleClose}
           >
             Close

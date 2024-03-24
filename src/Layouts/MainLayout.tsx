@@ -26,7 +26,6 @@ interface MainLayoutProp {
 const MainLayout: React.FC<MainLayoutProp> = ({ notes, availableTags }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
-  const bodyBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
   const sidebarBackgroundColor = useColorModeValue('#E4E5F1', '#1B4242');
   const breakpoint = useBreakpoint({ ssr: false });
 
@@ -39,7 +38,6 @@ const MainLayout: React.FC<MainLayoutProp> = ({ notes, availableTags }) => {
       templateRows='repeat(24, 1fr)'
       templateColumns='repeat(12, 1fr)'
       gap={2}
-      bgColor={bodyBackgroundColor}
     >
       {breakpoint === ('base' || 'sm') ? (
         <Drawer

@@ -4,7 +4,7 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/React-NoteTaker',
+  base: '/MarkUp',
   plugins: [react(), svgr()],
   server: {
     port: 8080,

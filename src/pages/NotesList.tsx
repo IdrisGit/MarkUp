@@ -11,6 +11,7 @@ import {
   Box,
   Flex,
   Button,
+  IconButton,
   FormControl,
   Input,
   InputGroup,
@@ -231,8 +232,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 />
               </FormControl>
             </Box>
-            <Box>
-              <FormControl>
+            <Box
+              display='flex'
+              flexDirection='row'
+              columnGap={2}
+            >
+              <FormControl height='100%'>
                 <ReactSelect
                   placeholder='Select Tags'
                   styles={{
@@ -273,6 +278,13 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                   isMulti
                 />
               </FormControl>
+              <IconButton
+                variant='outline'
+                aria-label='Edit Tags'
+                fontSize='sm'
+                icon={<LuClipboardEdit />}
+                onClick={() => setEditTagsModalOpen(true)}
+              />
             </Box>
           </Flex>
         </form>
@@ -313,7 +325,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
             </Link>
           </ListItem>
           <ListItem>
-            <Button
+            {/* <Button
               variant='solid'
               width='100%'
               fontSize='sm'
@@ -325,7 +337,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
               onClick={() => setEditTagsModalOpen(true)}
             >
               Edit Tags
-            </Button>
+            </Button> */}
           </ListItem>
         </List>
       </Container>

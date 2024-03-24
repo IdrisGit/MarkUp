@@ -6,7 +6,7 @@ import { useStore } from '../store/store';
 import DeleteModal from '../components/DeleteModal';
 import remarkGfm from 'remark-gfm';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import { Flex, Box, Badge, Heading, IconButton, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Box, Badge, Heading, IconButton } from '@chakra-ui/react';
 import { MdEdit } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
@@ -16,8 +16,6 @@ const Note: React.FC = () => {
   const { onDeleteNote } = useStore();
   const note = useNote();
   const navigate = useNavigate();
-  const iconBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
-  const iconHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
 
   return (
     <Flex
@@ -57,19 +55,13 @@ const Note: React.FC = () => {
             variant='outline'
             aria-label='Edit Note'
             onClick={() => navigate(`/${note.id}/edit`)}
-            borderColor={iconBorderColor}
-            _hover={{
-              borderColor: iconHoverBorderColor,
-            }}
+            colorScheme='green'
             icon={<MdEdit />}
           />
           <IconButton
             variant='outline'
             aria-label='Edit Note'
-            borderColor='red.200'
-            _hover={{
-              borderColor: 'red.500',
-            }}
+            colorScheme='red'
             onClick={() => setShowDeleteModal(true)}
             icon={<IoMdTrash />}
           />

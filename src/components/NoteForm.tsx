@@ -35,10 +35,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
 
   const navigate = useNavigate();
-  const saveButtonBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
-  const saveButtonHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
-  const saveButtonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
-  const saveButtonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
+  const selectOptionHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
   const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
   const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
   const inputColor = useColorModeValue('#1A202C', '#FFFFFFEB');
@@ -112,7 +109,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
                 option: (baseStyles, state) => ({
                   ...baseStyles,
                   color: inputColor,
-                  backgroundColor: state.isFocused ? saveButtonHoverBackgroundColor : undefined,
+                  backgroundColor: state.isFocused ? selectOptionHoverBackgroundColor : undefined,
                 }),
               }}
               onCreateOption={(label) => {
@@ -154,12 +151,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
         >
           <Button
             type='submit'
-            backgroundColor={saveButtonBackgroundColor}
-            border={`1px solid ${saveButtonBorderColor}`}
-            _hover={{
-              backgroundColor: saveButtonHoverBackgroundColor,
-              borderColor: saveButtonHoverBorderColor,
-            }}
+            colorScheme='green'
           >
             Save
           </Button>
@@ -167,10 +159,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
             <Button
               type='button'
               variant='outline'
-              borderColor='red.200'
-              _hover={{
-                borderColor: 'red.500',
-              }}
+              colorScheme='red'
             >
               Cancel
             </Button>

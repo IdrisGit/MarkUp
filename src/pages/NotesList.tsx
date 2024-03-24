@@ -186,7 +186,6 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
 
   const { addTag, onUpdateTag, onDeleteTag } = useStore();
   const { id } = useParams();
-  const buttonBackgroundColor = useColorModeValue('#D2D3DB', '#5C8374');
   const buttonHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
   const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
   const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
@@ -284,6 +283,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 fontSize='sm'
                 icon={<LuClipboardEdit />}
                 onClick={() => setEditTagsModalOpen(true)}
+                colorScheme='green'
               />
             </Box>
           </Flex>
@@ -314,30 +314,12 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                 variant='solid'
                 width='100%'
                 fontSize='sm'
-                bgColor={buttonBackgroundColor}
-                _hover={{
-                  backgroundColor: buttonHoverBackgroundColor,
-                }}
+                colorScheme='green'
                 rightIcon={<MdAdd />}
               >
                 Create New Note
               </Button>
             </Link>
-          </ListItem>
-          <ListItem>
-            {/* <Button
-              variant='solid'
-              width='100%'
-              fontSize='sm'
-              bgColor={buttonBackgroundColor}
-              _hover={{
-                backgroundColor: buttonHoverBackgroundColor,
-              }}
-              rightIcon={<LuClipboardEdit />}
-              onClick={() => setEditTagsModalOpen(true)}
-            >
-              Edit Tags
-            </Button> */}
           </ListItem>
         </List>
       </Container>

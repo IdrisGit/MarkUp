@@ -28,10 +28,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ show, handleClose, handleDele
         <ModalFooter gap={2}>
           <Button
             variant='solid'
-            bgColor='red.400'
-            _hover={{
-              backgroundColor: 'red.500',
-            }}
+            colorScheme='red'
             onClick={handleDelete}
           >
             Delete
@@ -39,6 +36,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ show, handleClose, handleDele
           <Button
             variant='outline'
             onClick={handleClose}
+            colorScheme='gray'
           >
             Close
           </Button>

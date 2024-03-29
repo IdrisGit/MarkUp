@@ -12,6 +12,17 @@ const config: ViteConfig = {
   server: {
     port: 8080,
   },
+  resolve: {
+    alias: {
+      src: '/src',
+      '@components': 'src/components',
+      '@store': 'src/store',
+      '@utils': 'src/utils',
+      '@hooks': 'src/hooks',
+      '@type:': 'src/types',
+      '@assets': 'src/assets',
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

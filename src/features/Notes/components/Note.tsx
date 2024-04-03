@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { useNote } from '../hooks/useNote';
-import { useStore } from '../store/store';
-import DeleteModal from '../components/DeleteModal';
 import remarkGfm from 'remark-gfm';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { Flex, Box, Badge, Heading, IconButton } from '@chakra-ui/react';
 import { MdEdit } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
+import { useNote } from '@hooks/useNote';
+import { useStore } from '@store/store';
+import DeleteModal from '@components/DeleteModal';
 
-const Note: React.FC = () => {
+export const Note: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const { onDeleteNote } = useStore();
@@ -86,5 +86,3 @@ const Note: React.FC = () => {
     </Flex>
   );
 };
-
-export default Note;

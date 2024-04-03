@@ -2,8 +2,6 @@ import React, { useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { Tag, SimplifiedNote } from '../types';
-import { useStore } from '../store/store';
 import {
   Container,
   VStack,
@@ -32,6 +30,8 @@ import {
 } from '@chakra-ui/react';
 import { MdAdd } from 'react-icons/md';
 import { LuClipboardEdit } from 'react-icons/lu';
+import { Tag, SimplifiedNote } from '@type/index';
+import { useStore } from '@store/store';
 
 interface NotesListProp {
   notes: SimplifiedNote[];
@@ -179,7 +179,7 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   );
 };
 
-const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
+export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [editTagsModalOpen, setEditTagsModalOpen] = useState<boolean>(false);
@@ -220,6 +220,7 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
                   type='text'
                   value={title}
                   placeholder='Search Title'
+                  autoComplete='off'
                   color={inputColor}
                   bgColor={inputBackgroundColor}
                   borderColor={inputBorderColor}
@@ -336,5 +337,3 @@ const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
     </VStack>
   );
 };
-
-export default NotesList;

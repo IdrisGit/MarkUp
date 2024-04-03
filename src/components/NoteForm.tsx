@@ -1,7 +1,6 @@
 import { FormEvent, useRef, useState } from 'react';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuidv4 } from 'uuid';
-import { NoteData, Tag } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Flex,
@@ -12,6 +11,7 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { NoteData, Tag } from '@type/index';
 
 interface NoteFormProps {
   onSubmit: (data: NoteData) => string;
@@ -77,6 +77,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
                 type='text'
                 defaultValue={title}
                 placeholder='Title'
+                autoComplete='off'
                 color={inputColor}
                 borderColor={inputBorderColor}
                 _placeholder={{

@@ -7,11 +7,14 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["./components/*"],
+      "@features/*": ["./features/*"],
       "@store/*": ["./store/*"],
       "@utils/*": ["./utils/*"],
       "@hooks/*": ["./hooks/*"],
       "@type/*": ["./types/*"],
-      "@assets/*": ["./assets/*"]
+      "@assets/*": ["./assets/*"],
+      "@routes/*": ["./routes/*"],
+      "@layouts/*": ["./layouts/*"]
     },
 
     /* Bundler mode */

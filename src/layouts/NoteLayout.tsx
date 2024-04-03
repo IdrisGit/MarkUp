@@ -1,12 +1,9 @@
 import { Navigate, Outlet, useParams } from 'react-router-dom';
-import { Note } from '../types';
+import { useNotesWithTags } from '@hooks/useNotesWithTags';
 
-interface NoteLayoutProps {
-  notes: Note[];
-}
-
-const NoteLayout: React.FC<NoteLayoutProps> = ({ notes }) => {
+const NoteLayout: React.FC = () => {
   const { id } = useParams();
+  const { notes } = useNotesWithTags();
 
   const note = notes.find((note) => note.id === id);
 

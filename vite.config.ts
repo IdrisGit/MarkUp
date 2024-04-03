@@ -1,5 +1,4 @@
-import { defineConfig } from 'vite';
-import type { UserConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import type { InlineConfig } from 'vitest';
 
 import react from '@vitejs/plugin-react';
@@ -15,12 +14,15 @@ const config: ViteConfig = {
   resolve: {
     alias: {
       src: '/src',
-      '@components': 'src/components',
-      '@store': 'src/store',
-      '@utils': 'src/utils',
-      '@hooks': 'src/hooks',
-      '@type:': 'src/types',
-      '@assets': 'src/assets',
+      '@components': '/src/components',
+      '@features': '/src/features',
+      '@store': '/src/store',
+      '@utils': '/src/utils',
+      '@hooks': '/src/hooks',
+      '@type:': '/src/types',
+      '@assets': '/src/assets',
+      '@routes': '/src/routes',
+      '@layouts': '/src/layouts',
     },
   },
   test: {

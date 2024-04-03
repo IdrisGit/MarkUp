@@ -64,7 +64,7 @@ Check out the live demo of MarkUp:
 
    ![Edit Note](./readme_assests/edit-note.png)
 
-4. **Filter Notes**:
+4. **Color Modes**:
 
    |                  Dark Mode                   |                   Light Mode                   |
    | :------------------------------------------: | :--------------------------------------------: |
@@ -97,7 +97,7 @@ Here are some of the upcoming features that will be added:
 5. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
 6. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.
 
-Feel free to suggest more features or enhancements that you would like to see in MarkUp. Contributions and ideas are welcome!
+Feel free to suggest more features or enhancements that you would like to see in MarkUp.
 
 ## License
 

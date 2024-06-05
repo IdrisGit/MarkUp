@@ -1,13 +1,12 @@
 import { create } from 'zustand';
-import { v4 as uuidv4 } from 'uuid';
-import { RawNote, Tag, NoteData } from '../types';
-import demoNotes from '../assets/demo/demoNotes.json';
-import demoTags from '../assets/demo/demoTags.json';
+import { RawNote, Tag, NoteData, Note } from '@type/index';
 
 interface State {
   notes: RawNote[];
   tags: Tag[];
-  onCreateNote: (data: NoteData) => string;
+  setNotes: (notes: RawNote[]) => void;
+  setTags: (tags: Tag[]) => void;
+  onCreateNote: (data: Note) => string;
   onUpdateNote: (id: string, { tags, ...data }: NoteData) => string;
   onDeleteNote: (id: string) => void;
   addTag: (tag: Tag) => void;
@@ -15,31 +14,13 @@ interface State {
   onDeleteTag: (id: string) => void;
 }
 
-const getNotes = (): RawNote[] => {
-  if (window.location.hash.includes('#demo')) {
-    if (localStorage.getItem('NOTES') === null) {
-      localStorage.setItem('NOTES', JSON.stringify(demoNotes));
-      return JSON.parse(JSON.stringify(demoNotes));
-    }
-  }
-  return JSON.parse(localStorage.getItem('NOTES') || '[]');
-};
-
-const getTags = (): Tag[] => {
-  if (window.location.hash.includes('#demo')) {
-    if (localStorage.getItem('TAGS') === null) {
-      localStorage.setItem('TAGS', JSON.stringify(demoTags));
-      return JSON.parse(JSON.stringify(demoTags));
-    }
-  }
-  return JSON.parse(localStorage.getItem('TAGS') || '[]');
-};
-
 export const useStore = create<State>()((set) => ({
-  notes: getNotes(),
-  tags: getTags(),
-  onCreateNote: ({ tags, ...data }) => {
-    const id = uuidv4();
+  notes: [],
+  tags: [],
+  setNotes: (notes) => set({ notes }),
+  setTags: (tags) => set({ tags }),
+  onCreateNote: ({ tags, id, ...data }) => {
+    // const id = uuidv4();
     set((state) => {
       const newNotes = [...state.notes, { ...data, id: id, tagIds: tags.map((tag) => tag.id) }];
       localStorage.setItem('NOTES', JSON.stringify(newNotes));

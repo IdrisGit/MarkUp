@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuidv4 } from 'uuid';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -12,9 +12,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { NoteData, Tag } from '@type/index';
+import { useDatabase } from '@db/hooks';
 
 interface NoteFormProps {
-  onSubmit: (data: NoteData) => string;
+  onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
   title?: string;
@@ -34,7 +35,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [seletectedTags, setSelectedTags] = useState<Tag[]>(tags);
 
-  const navigate = useNavigate();
+  const db = useDatabase();
   const selectOptionHoverBackgroundColor = useColorModeValue('#9394A5', '#5CAF74');
   const inputBackgroundColor = useColorModeValue('#FAFAFA', '#092635');
   const inputBorderColor = useColorModeValue('#CBD5E0', '#0000007A');
@@ -43,13 +44,21 @@ const NoteForm: React.FC<NoteFormProps> = ({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const noteId = onSubmit({
+    onSubmit({
       title: titleRef.current!.value,
       markdown: markdownRef.current!.value,
       tags: seletectedTags,
     });
+  };
 
-    navigate(`/${noteId}`);
+  const handleAddNewTag = async (label: string) => {
+    const id = uuidv4();
+    const newTag = { id, label };
+    onAddTag(newTag);
+    setSelectedTags((prev) => [...prev, newTag]);
+    if (db) {
+      await db.tags.insert({ label, id });
+    }
   };
 
   return (
@@ -113,11 +122,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
                   backgroundColor: state.isFocused ? selectOptionHoverBackgroundColor : undefined,
                 }),
               }}
-              onCreateOption={(label) => {
-                const newTag = { id: uuidv4(), label: label };
-                onAddTag(newTag);
-                setSelectedTags((prev) => [...prev, newTag]);
-              }}
+              onCreateOption={handleAddNewTag}
               value={seletectedTags.map((tag) => {
                 return { label: tag.label, value: tag.id };
               })}

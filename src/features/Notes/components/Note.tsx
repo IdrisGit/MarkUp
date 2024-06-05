@@ -9,6 +9,7 @@ import { IoMdTrash } from 'react-icons/io';
 import { useNote } from '@hooks/useNote';
 import { useStore } from '@store/store';
 import DeleteModal from '@components/DeleteModal';
+import { useDatabase } from '@db/hooks';
 
 export const Note: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -16,6 +17,17 @@ export const Note: React.FC = () => {
   const { onDeleteNote } = useStore();
   const note = useNote();
   const navigate = useNavigate();
+  const db = useDatabase();
+
+  const handleDeleteNote = async (id: string) => {
+    onDeleteNote(id);
+    if (db) {
+      const note = await db.notes.findOne(id).exec();
+      if (note) {
+        note.remove();
+      }
+    }
+  };
 
   return (
     <Flex
@@ -80,7 +92,7 @@ export const Note: React.FC = () => {
         <DeleteModal
           show={showDeleteModal}
           handleClose={() => setShowDeleteModal(false)}
-          handleDelete={() => onDeleteNote(note.id)}
+          handleDelete={() => handleDeleteNote(note.id)}
         />
       )}
     </Flex>

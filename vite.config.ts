@@ -23,6 +23,7 @@ const config: ViteConfig = {
       '@assets': '/src/assets',
       '@routes': '/src/routes',
       '@layouts': '/src/layouts',
+      '@db': '/src/db',
     },
   },
   test: {

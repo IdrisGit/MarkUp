@@ -32,6 +32,7 @@ import { MdAdd } from 'react-icons/md';
 import { LuClipboardEdit } from 'react-icons/lu';
 import { Tag, SimplifiedNote } from '@type/index';
 import { useStore } from '@store/store';
+import { useDatabase } from '@db/hooks';
 
 interface NotesListProp {
   notes: SimplifiedNote[];
@@ -102,12 +103,16 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   const addBorderColor = useColorModeValue('#484B6A55', '#9EC8B955');
   const addHoverBorderColor = useColorModeValue('#484B6A', '#9EC8B9');
 
-  const handleAddTag = () => {
+  const db = useDatabase();
+
+  const handleAddTag = async () => {
     if (newTagRef.current?.value.trim().length) {
-      onAdd({
-        label: newTagRef.current.value.trim(),
-        id: uuidv4(),
-      });
+      const id = uuidv4();
+      const label = newTagRef.current.value.trim();
+      onAdd({ label, id });
+      if (db) {
+        await db.tags.insert({ label, id });
+      }
 
       newTagRef.current.value = '';
     }

@@ -14,7 +14,8 @@
       "@type/*": ["./types/*"],
       "@assets/*": ["./assets/*"],
       "@routes/*": ["./routes/*"],
-      "@layouts/*": ["./layouts/*"]
+      "@layouts/*": ["./layouts/*"],
+      "@db/*": ["./db/*"]
     },
 
     /* Bundler mode */

@@ -1,7 +1,5 @@
 import { create } from 'zustand';
 import { RawNote, Tag, NoteData, Note } from '@type/index';
-import demoNotes from '../assets/demo/demoNotes.json';
-import demoTags from '../assets/demo/demoTags.json';
 
 interface State {
   notes: RawNote[];
@@ -15,26 +13,6 @@ interface State {
   onUpdateTag: (id: string, label: string) => void;
   onDeleteTag: (id: string) => void;
 }
-
-const getNotes = (): RawNote[] => {
-  if (window.location.hash.includes('#demo')) {
-    if (localStorage.getItem('NOTES') === null) {
-      localStorage.setItem('NOTES', JSON.stringify(demoNotes));
-      return JSON.parse(JSON.stringify(demoNotes));
-    }
-  }
-  return JSON.parse(localStorage.getItem('NOTES') || '[]');
-};
-
-const getTags = (): Tag[] => {
-  if (window.location.hash.includes('#demo')) {
-    if (localStorage.getItem('TAGS') === null) {
-      localStorage.setItem('TAGS', JSON.stringify(demoTags));
-      return JSON.parse(JSON.stringify(demoTags));
-    }
-  }
-  return JSON.parse(localStorage.getItem('TAGS') || '[]');
-};
 
 export const useStore = create<State>()((set) => ({
   notes: [],

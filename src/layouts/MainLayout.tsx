@@ -1,11 +1,45 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { Sidebar } from '@features/Sidebar';
 import { Topbar } from '@features/Topbar';
+import { useStore } from '@store/store';
+import { useDatabase } from '@db/hooks';
+import { RawNote, Tag } from '@type/index';
+import demoNotes from '@assets/demo/demoNotes.json';
+import demoTags from '@assets/demo/demoTags.json';
 
 const MainLayout: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const { hash } = useLocation();
+  const db = useDatabase();
+  const { setNotes, setTags } = useStore();
+
+  useEffect(() => {
+    if (hash && hash === '#demo' && db) {
+      const insertDemoData = async () => {
+        const notesCount = await db.notes.count().exec();
+        const tagsCount = await db.tags.count().exec();
+
+        if (notesCount || tagsCount) {
+          // ? Check if notes or tags are present in the database and return without setting demo notes
+          return;
+        }
+
+        const demoNoteList: Array<RawNote> = JSON.parse(JSON.stringify(demoNotes));
+        const demoTagList: Array<Tag> = JSON.parse(JSON.stringify(demoTags));
+
+        await db.notes.bulkInsert(demoNoteList.map((note) => note));
+        await db.tags.bulkInsert(demoTagList.map((tag) => tag));
+
+        // * Optimistic Update
+        setNotes(demoNoteList);
+        setTags(demoTagList);
+      };
+      insertDemoData();
+    }
+  }, [db, hash, setNotes, setTags]);
 
   return (
     <Grid

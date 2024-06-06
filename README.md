@@ -1,6 +1,9 @@
 # MarkUp: Notes Simplified
 
-MarkUp is a simple note-taking application built with React. It provides a user-friendly interface for creating and managing notes, with support for Markdown formatting.
+MarkUp is a local-first note-taking application. It features a clean and simple interface for creating and managing notes, with full support for Markdown formatting.
+
+> [!NOTE]
+>  This is my personal hobby project, where I explore and experiment with new technologies and ideas. Feel free to browse the code and follow along with my learning journey.
 
 ## Table of contents
 
@@ -8,14 +11,15 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 - [Technologies](#technologies-used)
 - [Demo](#demo)
 - [Screenshots](#screenshots)
-- [Todo](#todo-future-plans)
 - [License](#license)
 - [Contact](#contact)
 
 ## Features
 
 - **Create and Capture:** Seamlessly create new notes by providing a title and content. Capture your thoughts, ideas, and important information effortlessly.
-
+  
+- **Local-First Data Storage:** MarkUp adopts a local-first approach for data storage, ensuring your notes are securely saved locally. Benefit from enhanced privacy and accessibility, even without an internet connection.
+  
 - **Effortless Editing:** Edit your existing notes with ease. Update the title or content of a note anytime you need to refine or expand your thoughts.
 
 - **Smart Organization:** Assign tags to your notes for smart organization. Categorize your notes into custom tags to easily classify and retrieve them later.
@@ -36,6 +40,7 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 - :label: TypeScript v5
 - :atom_symbol: React v18
 - :link: React Router v6
+- :file_cabinet: RxDB (Database)
 - :art: ~~Bootstrap v5~~ Chakra UI v2.8
 - :bear: Zustand v4
 - :arrow_down: React Select v5.7
@@ -47,8 +52,6 @@ MarkUp is a simple note-taking application built with React. It provides a user-
 Check out the live demo of MarkUp:
 
 - :globe_with_meridians: **Live Page:** [https://idrisgit.github.io/MarkUp](https://idrisgit.github.io/MarkUp/#demo)
-
-  > :warning: **Note:** The current version of MarkUp uses local storage to save the notes. Therefore, the notes will be stored locally in your browser. Keep this in mind when using the demo, as clearing your browser data may result in the loss of your notes
 
 ## Screenshots
 
@@ -85,19 +88,6 @@ Check out the live demo of MarkUp:
       </td>
    </tr>
 </table>
-
-## TODO (Future Plans)
-
-Here are some of the upcoming features that will be added:
-
-1. :white_check_mark: **Real-time Markdown Preview**: Implement a feature that provides a real-time preview of Markdown formatting to the user.
-2. :white_check_mark: **Dark Mode**: Introduce a dark mode option for users who prefer a darker color scheme for the application.
-3. **PWA (Progressive Web App) Implementation:** Convert the application into a Progressive Web App (PWA) to provide offline access, app-like behavior, and the ability for users to install it on their devices for a seamless mobile experience.
-4. **Deploy with GitHub Actions**: Implement the deployment process using GitHub Actions to automate the deployment process.
-5. **User Authentication**: Implement user authentication functionality to allow users to create accounts, login, and securely access their notes.
-6. **Move Notes Storage to Database**: Migrate the notes storage from local storage to a database to ensure persistent storage and enable users to access their notes across devices.
-
-Feel free to suggest more features or enhancements that you would like to see in MarkUp.
 
 ## License
 

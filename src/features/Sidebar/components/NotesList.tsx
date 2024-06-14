@@ -37,6 +37,7 @@ import { useDatabase } from '@db/hooks';
 interface NotesListProp {
   notes: SimplifiedNote[];
   availableTags: Tag[];
+  handleClose?: () => void;
 }
 
 interface EditTagsModalProps {
@@ -184,7 +185,7 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   );
 };
 
-export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
+export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags, handleClose }) => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [editTagsModalOpen, setEditTagsModalOpen] = useState<boolean>(false);
@@ -305,6 +306,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
             <ListItem
               key={note.id}
               width='100%'
+              onClick={handleClose}
             >
               <NoteCard
                 title={note.title}
@@ -322,6 +324,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
                 fontSize='sm'
                 colorScheme='green'
                 rightIcon={<MdAdd />}
+                onClick={handleClose}
               >
                 Create New Note
               </Button>

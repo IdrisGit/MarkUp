@@ -34,6 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isNavOpen, setIsNavOpen }) => 
               <NotesList
                 notes={notes}
                 availableTags={tags}
+                handleClose={() => setIsNavOpen(false)}
               />
             </DrawerBody>
           </DrawerContent>

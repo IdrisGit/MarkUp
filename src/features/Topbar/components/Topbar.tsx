@@ -15,7 +15,8 @@ export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
       <IconButton
         aria-label='Change Theme'
         variant='outline'
-        size='md'
+        size='sm'
+        fontSize='16px'
         display={{ base: 'inherit', md: 'none' }}
         onClick={() => setIsNavOpen(true)}
         icon={<RxHamburgerMenu />}
@@ -23,7 +24,8 @@ export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
       <IconButton
         aria-label='Change Theme'
         variant='flushed'
-        size='lg'
+        size='xs'
+        fontSize='16px'
         onClick={toggleColorMode}
         icon={colorMode === 'light' ? <MdDarkMode /> : <CiLight />}
       />

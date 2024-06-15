@@ -56,14 +56,14 @@ const MainLayout: React.FC = () => {
         setIsNavOpen={setIsNavOpen}
       />
       <GridItem
-        height='100%'
+        height='48px'
         width='100%'
         colSpan={{ base: 12, sm: 10 }}
         rowSpan={1}
         display='flex'
         justifyContent={{ base: 'space-between', md: 'flex-end' }}
         alignItems='center'
-        pt={2}
+        py={2}
         px={4}
       >
         <Topbar setIsNavOpen={setIsNavOpen} />

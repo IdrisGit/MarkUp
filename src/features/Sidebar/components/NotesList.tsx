@@ -58,6 +58,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, tags, selectedId }) => {
   const cardHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
   return (
     <Card
+      id='note-card'
       as={Link}
       to={`/${id}`}
       variant='outline'
@@ -71,8 +72,14 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, tags, selectedId }) => {
           gap={2}
           alignItems='flex-start'
         >
-          <Text fontSize='sm'>{title}</Text>
+          <Text
+            id='note-title'
+            fontSize='sm'
+          >
+            {title}
+          </Text>
           <HStack
+            id='note-tag-list'
             gap={1}
             flexWrap='wrap'
           >
@@ -217,6 +224,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags, handl
       <Container padding='0'>
         <form>
           <Flex
+            id='note-list-search-filter'
             direction='column'
             rowGap='2'
           >
@@ -285,6 +293,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags, handl
                 />
               </FormControl>
               <IconButton
+                id='add-edit-tags-button'
                 variant='outline'
                 aria-label='Edit Tags'
                 fontSize='sm'
@@ -319,6 +328,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags, handl
           <ListItem>
             <Link to={'/new'}>
               <Button
+                id='create-new-note-button'
                 variant='solid'
                 width='100%'
                 fontSize='sm'

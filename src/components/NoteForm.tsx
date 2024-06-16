@@ -82,6 +82,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
           <Box>
             <FormControl>
               <Input
+                id='note-form-title'
                 ref={titleRef}
                 type='text'
                 defaultValue={title}
@@ -99,6 +100,7 @@ const NoteForm: React.FC<NoteFormProps> = ({
           </Box>
           <Box width={{ base: '100%', md: '50%' }}>
             <CreatableReactSelect
+              id='note-form-tag-select'
               placeholder='Select Tags'
               styles={{
                 control: (baseStyles) => ({
@@ -140,7 +142,10 @@ const NoteForm: React.FC<NoteFormProps> = ({
             />
           </Box>
         </Box>
-        <Box height='100%'>
+        <Box
+          id='note-markdown'
+          height='100%'
+        >
           <Textarea
             required
             variant='outline'
@@ -156,12 +161,16 @@ const NoteForm: React.FC<NoteFormProps> = ({
           justifyContent='flex-end'
         >
           <Button
+            id='note-form-save'
             type='submit'
             colorScheme='green'
           >
             Save
           </Button>
-          <Link to={'..'}>
+          <Link
+            id='note-form-cancel'
+            to={'..'}
+          >
             <Button
               type='button'
               variant='outline'

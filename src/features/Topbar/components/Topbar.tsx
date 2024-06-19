@@ -1,10 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button, IconButton, useColorMode, HStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { Button, IconButton, useColorMode, HStack, useBreakpoint } from '@chakra-ui/react';
 import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { FaGithub } from 'react-icons/fa';
-import { driver } from 'driver.js';
+import { driver, type DriveStep } from 'driver.js';
 import 'driver.js/dist/driver.css';
 import '@features/Topbar/components/driverjs.css';
 
@@ -13,7 +14,9 @@ interface TopbarProps {
 }
 
 export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
+  const navigate = useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
+  const breakpoint = useBreakpoint({ ssr: false });
 
   const handleStartTour = () => {
     const driverObj = driver({
@@ -29,6 +32,10 @@ export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
           popover: {
             title: 'Notes Search',
             description: 'You can search and filter through your notes by title and/or tags.',
+            onPrevClick: () => {
+              setIsNavOpen(false);
+              driverObj.movePrevious();
+            },
           },
         },
         {
@@ -52,6 +59,13 @@ export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
           popover: {
             title: 'Create New Note',
             description: 'Click here to open a new blank note.',
+            onNextClick: () => {
+              navigate('new');
+              // * setTimeout to allow new note to open before showing the popover.
+              setTimeout(() => {
+                driverObj.moveNext();
+              }, 100);
+            },
           },
         },
         {
@@ -110,12 +124,36 @@ export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
       ],
     });
 
+    // * Add a new step for mobile to show user to open sidebar.
+    if (breakpoint === ('base' || 'sm')) {
+      const existingSteps = driverObj.getConfig().steps;
+      const mobileDrawerStep: DriveStep = {
+        element: '#mobile-open-sidebar-button',
+        popover: {
+          title: 'Sidebar Toggle',
+          description: 'Click here to open sidebar for navigation.',
+          onNextClick: () => {
+            setIsNavOpen(true);
+            // * setTimeout to allow navbar to open before showing the popover.
+            setTimeout(() => {
+              driverObj.moveNext();
+            }, 100);
+          },
+        },
+      };
+
+      if (existingSteps) {
+        driverObj.setSteps([mobileDrawerStep, ...existingSteps]);
+      }
+    }
+
     driverObj.drive();
   };
 
   return (
     <>
       <IconButton
+        id='mobile-open-sidebar-button'
         aria-label='Open Sidebar'
         variant='outline'
         size='sm'

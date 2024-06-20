@@ -21,6 +21,31 @@ const MainLayout: React.FC = () => {
   const navigate = useNavigate();
   const breakpoint = useBreakpoint({ ssr: false });
 
+  const driverObjForDemo = useMemo(
+    () =>
+      driver({
+        stagePadding: 6,
+        stageRadius: 5,
+        overlayColor: '#000000AA',
+        overlayOpacity: 0.9,
+        popoverClass: 'driverjs-theme',
+      }),
+    [],
+  );
+
+  const driverObj = useMemo(
+    () =>
+      driver({
+        showProgress: true,
+        stagePadding: 6,
+        stageRadius: 5,
+        overlayColor: '#000000AA',
+        overlayOpacity: 0.9,
+        popoverClass: 'driverjs-theme',
+      }),
+    [],
+  );
+
   useEffect(() => {
     if (hash && hash === '#demo' && db) {
       const insertDemoData = async () => {
@@ -42,24 +67,26 @@ const MainLayout: React.FC = () => {
         setNotes(demoNoteList);
         setTags(demoTagList);
       };
-      insertDemoData();
-    }
-  }, [db, hash, setNotes, setTags]);
 
-  const driverObj = useMemo(
-    () =>
-      driver({
-        showProgress: true,
-        stagePadding: 6,
-        stageRadius: 5,
-        overlayColor: '#000000AA',
-        overlayOpacity: 0.9,
-        popoverClass: 'driverjs-theme',
-      }),
-    [],
-  );
+      insertDemoData();
+
+      // * Show highlight to let the user know they can get a tour, when visiting using the demo link.
+      driverObjForDemo.highlight({
+        element: '#start-tour-button',
+        popover: {
+          description: 'You can get a brief tour of the app by clicking here.',
+          side: 'bottom',
+          align: 'end',
+        },
+      });
+    }
+  }, [db, hash, setNotes, setTags, driverObjForDemo]);
 
   const handleStartTour = () => {
+    if (driverObjForDemo && driverObjForDemo.isActive()) {
+      driverObjForDemo.destroy();
+    }
+
     const baseSteps: DriveStep[] = [
       {
         element: '#note-list-search-filter',
@@ -78,7 +105,11 @@ const MainLayout: React.FC = () => {
       },
       {
         element: '#note-card',
-        popover: { title: 'Note Card', description: 'Notes details.' },
+        popover: {
+          title: 'Note Card',
+          description:
+            'Note details are shown here and you can navigate to the note by clicking on the card.',
+        },
       },
       {
         element: '#note-title',
@@ -133,6 +164,8 @@ const MainLayout: React.FC = () => {
         element: '#note-form-save',
         popover: {
           title: 'Save Note',
+          side: 'top',
+          align: 'end',
         },
       },
       {
@@ -140,6 +173,8 @@ const MainLayout: React.FC = () => {
         popover: {
           title: 'Cancel',
           description: 'If you want to cancel the note.',
+          side: 'top',
+          align: 'end',
         },
       },
       {
@@ -155,6 +190,8 @@ const MainLayout: React.FC = () => {
           title: 'GitHub Link',
           description:
             'You can checkout the GitHub repo by clicking here. If you like the project you can also star &#11088; it there.',
+          side: 'bottom',
+          align: 'end',
         },
       },
       {

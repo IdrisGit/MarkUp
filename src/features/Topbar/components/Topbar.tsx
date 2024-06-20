@@ -29,6 +29,7 @@ export const Topbar: React.FC<TopbarProps> = ({ handleSidebarOpen, handleStartTo
       />
       <HStack spacing={3}>
         <Button
+          id='start-tour-button'
           variant='outline'
           size='sm'
           fontSize='sm'

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import {
   GridItem,
   Drawer,
@@ -13,19 +13,20 @@ import { useNotesWithTags } from '@hooks/useNotesWithTags';
 
 interface SidebarProps {
   isNavOpen: boolean;
-  setIsNavOpen: Dispatch<SetStateAction<boolean>>;
+  handleSidebarClose: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ isNavOpen, setIsNavOpen }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ isNavOpen, handleSidebarClose }) => {
   const sidebarBackgroundColor = useColorModeValue('#E4E5F1', '#1B4242');
   const breakpoint = useBreakpoint({ ssr: false });
   const { notes, tags } = useNotesWithTags();
+
   return (
     <>
       {breakpoint === ('base' || 'sm') ? (
         <Drawer
           isOpen={isNavOpen}
-          onClose={() => setIsNavOpen(false)}
+          onClose={handleSidebarClose}
           placement='left'
         >
           <DrawerOverlay />
@@ -34,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isNavOpen, setIsNavOpen }) => 
               <NotesList
                 notes={notes}
                 availableTags={tags}
-                handleClose={() => setIsNavOpen(false)}
+                handleClose={handleSidebarClose}
               />
             </DrawerBody>
           </DrawerContent>

@@ -1,32 +1,64 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { IconButton, useColorMode } from '@chakra-ui/react';
+import React from 'react';
+import { Button, IconButton, useColorMode, HStack } from '@chakra-ui/react';
 import { MdDarkMode } from 'react-icons/md';
 import { CiLight } from 'react-icons/ci';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { FaGithub } from 'react-icons/fa';
+import 'driver.js/dist/driver.css';
+import '@features/Topbar/components/driverjs.css';
 
 interface TopbarProps {
-  setIsNavOpen: Dispatch<SetStateAction<boolean>>;
+  handleStartTour: () => void;
+  handleSidebarOpen: () => void;
 }
 
-export const Topbar: React.FC<TopbarProps> = ({ setIsNavOpen }) => {
+export const Topbar: React.FC<TopbarProps> = ({ handleSidebarOpen, handleStartTour }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       <IconButton
-        aria-label='Change Theme'
+        id='mobile-open-sidebar-button'
+        aria-label='Open Sidebar'
         variant='outline'
-        size='md'
+        size='sm'
+        fontSize='16px'
         display={{ base: 'inherit', md: 'none' }}
-        onClick={() => setIsNavOpen(true)}
+        onClick={handleSidebarOpen}
         icon={<RxHamburgerMenu />}
       />
-      <IconButton
-        aria-label='Change Theme'
-        variant='flushed'
-        size='lg'
-        onClick={toggleColorMode}
-        icon={colorMode === 'light' ? <MdDarkMode /> : <CiLight />}
-      />
+      <HStack spacing={3}>
+        <Button
+          id='start-tour-button'
+          variant='outline'
+          size='sm'
+          fontSize='sm'
+          onClick={handleStartTour}
+        >
+          Start Tour
+        </Button>
+        <IconButton
+          id='github-link'
+          as='a'
+          href='https://github.com/IdrisGit/MarkUp'
+          target='_blank'
+          rel='noopener'
+          aria-label='Redirect to apps repo on github'
+          variant='flushed'
+          size='xs'
+          fontSize='16px'
+          icon={<FaGithub />}
+        />
+        <IconButton
+          id='theme-switch-button'
+          aria-label='Change Theme'
+          variant='flushed'
+          size='xs'
+          fontSize='16px'
+          onClick={toggleColorMode}
+          icon={colorMode === 'light' ? <MdDarkMode /> : <CiLight />}
+        />
+      </HStack>
     </>
   );
 };

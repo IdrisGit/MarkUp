@@ -37,6 +37,7 @@ import { useDatabase } from '@db/hooks';
 interface NotesListProp {
   notes: SimplifiedNote[];
   availableTags: Tag[];
+  handleClose?: () => void;
 }
 
 interface EditTagsModalProps {
@@ -57,6 +58,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, tags, selectedId }) => {
   const cardHoverBackgroundColor = useColorModeValue('#9394a5', '#5CAF74');
   return (
     <Card
+      id='note-card'
       as={Link}
       to={`/${id}`}
       variant='outline'
@@ -70,8 +72,14 @@ const NoteCard: React.FC<NoteCardProps> = ({ id, title, tags, selectedId }) => {
           gap={2}
           alignItems='flex-start'
         >
-          <Text fontSize='sm'>{title}</Text>
+          <Text
+            id='note-title'
+            fontSize='sm'
+          >
+            {title}
+          </Text>
           <HStack
+            id='note-tag-list'
             gap={1}
             flexWrap='wrap'
           >
@@ -184,7 +192,7 @@ const EditTagsModal: React.FC<EditTagsModalProps> = ({
   );
 };
 
-export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => {
+export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags, handleClose }) => {
   const [title, setTitle] = useState('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [editTagsModalOpen, setEditTagsModalOpen] = useState<boolean>(false);
@@ -216,6 +224,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
       <Container padding='0'>
         <form>
           <Flex
+            id='note-list-search-filter'
             direction='column'
             rowGap='2'
           >
@@ -284,6 +293,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
                 />
               </FormControl>
               <IconButton
+                id='add-edit-tags-button'
                 variant='outline'
                 aria-label='Edit Tags'
                 fontSize='sm'
@@ -305,6 +315,7 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
             <ListItem
               key={note.id}
               width='100%'
+              onClick={handleClose}
             >
               <NoteCard
                 title={note.title}
@@ -317,11 +328,13 @@ export const NotesList: React.FC<NotesListProp> = ({ notes, availableTags }) => 
           <ListItem>
             <Link to={'/new'}>
               <Button
+                id='create-new-note-button'
                 variant='solid'
                 width='100%'
                 fontSize='sm'
                 colorScheme='green'
                 rightIcon={<MdAdd />}
+                onClick={handleClose}
               >
                 Create New Note
               </Button>

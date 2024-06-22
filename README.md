@@ -98,6 +98,8 @@ MarkUp is licensed under the [MIT License](LICENSE.md).
 If you have any questions, suggestions, or feedback, please feel free to contact me.
 
 Email: idris.gadi01@gmail.com  
-GitHub: https://github.com/IdrisGit
+GitHub: https://github.com/IdrisGit  
+LinkedIn: https://www.linkedin.com/in/idris-gadi/  
+Twitter/&#120143;: https://x.com/idrisGadiX 
 
 Thank you for using MarkUp!

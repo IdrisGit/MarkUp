@@ -3,7 +3,7 @@
 MarkUp is a local-first note-taking application. It features a clean and simple interface for creating and managing notes, with full support for Markdown formatting.
 
 > [!NOTE]
->  This is my personal hobby project, where I explore and experiment with new technologies and ideas. Feel free to browse the code and follow along with my learning journey.
+> This is my personal hobby project, where I explore and experiment with new technologies and ideas. Feel free to browse the code and follow along with my learning journey.
 
 ## Table of contents
 
@@ -17,9 +17,7 @@ MarkUp is a local-first note-taking application. It features a clean and simple 
 ## Features
 
 - **Create and Capture:** Seamlessly create new notes by providing a title and content. Capture your thoughts, ideas, and important information effortlessly.
-  
 - **Local-First Data Storage:** MarkUp adopts a local-first approach for data storage, ensuring your notes are securely saved locally. Benefit from enhanced privacy and accessibility, even without an internet connection.
-  
 - **Effortless Editing:** Edit your existing notes with ease. Update the title or content of a note anytime you need to refine or expand your thoughts.
 
 - **Smart Organization:** Assign tags to your notes for smart organization. Categorize your notes into custom tags to easily classify and retrieve them later.
@@ -89,6 +87,27 @@ Check out the live demo of MarkUp:
    </tr>
 </table>
 
+## Version 1
+
+- [x] Title and Tags
+- [x] Markdown Support
+- [x] Title Search and Tags Filter
+- [x] Create Note
+- [x] Edit Note
+- [x] Ability to edit Tags and auto update
+- [ ] Logo
+- [ ] Homepage
+- [x] Responsive Design
+- [ ] Pretty Markdown
+- [ ] Markdown Editor Syntax Highlighting
+- [x] Local Database
+- [ ] Support Picture Uploading
+- [x] Guided Tour
+- [ ] Unit Test
+- [ ] Integration Test
+- [ ] Storybook Integration
+- [ ] PWA
+
 ## License
 
 MarkUp is licensed under the [MIT License](LICENSE.md).
@@ -100,6 +119,6 @@ If you have any questions, suggestions, or feedback, please feel free to contact
 Email: idris.gadi01@gmail.com  
 GitHub: https://github.com/IdrisGit  
 LinkedIn: https://www.linkedin.com/in/idris-gadi/  
-Twitter/&#120143;: https://x.com/idrisGadiX 
+Twitter/&#120143;: https://x.com/idrisGadiX
 
 Thank you for using MarkUp!

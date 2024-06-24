@@ -1,9 +1,15 @@
 {
   "name": "markup",
-  "private": true,
-  "version": "0.1.0",
+  "license": "MIT",
+  "private": false,
+  "version": "0.2.0",
   "type": "module",
-  "homepage": "https://IdrisGit.github.io/React-NoteTaker",
+  "homepage": "https://idrisgit.github.io/MarkUp",
+  "author": {
+    "name": "Idris Gadi",
+    "email": "idris.gadi01@gmail.com",
+    "url": "https://github.com/IdrisGit"
+  },
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
@@ -52,5 +58,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
     "vitest": "^1.4.0"
-  }
+  },
+  "keywords": ["react", "typescript", "react-markdown", "zustand", "reactrouter", "notes-app", "note-taking"]
 }
